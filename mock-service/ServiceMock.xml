@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://example.com/demographics">
+                                         <soapenv:Header/>
+                                         <soapenv:Body>
+                                            <tns:GetCitizenDetailsResponse>
+                                               <FullName>Unknown Citizen</FullName>
+                                               <DateOfBirth>0000-00-00</DateOfBirth>
+                                               <Address>Unknown</Address>
+                                               <PhoneNumber>Unknown</PhoneNumber>
+                                            </tns:GetCitizenDetailsResponse>
+                                         </soapenv:Body>
+                                      </soapenv:Envelope>
