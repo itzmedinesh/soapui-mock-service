@@ -1,5 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://example.com/demographics">
+<con:soapui-project id="531ef9b5-26a0-4e56-9194-fd9bf1424a18" activeEnvironment="Default" name="ServiceMock" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="TestSuite" value="&lt;all>"/>
+  <con:entry key="Endpoint" value=""/>
+  <con:entry key="Select Report Type" value=""/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Export JUnit Results with test properties" value="false"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="TestCase" value="&lt;all>"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="user-settings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Environment" value="Default"/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Save Project" value="false"/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" id="33ba2539-42a8-436e-a3ab-6330f4fd32cf" wsaVersion="NONE" name="CitizenDemographicsBinding" type="wsdl" bindingName="{http://example.com/demographics}CitizenDemographicsBinding" soapVersion="1_1" anonymous="optional" definition="file:/Users/dineshsubramanian/demographics.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/dineshsubramanian/demographics.wsdl"><con:part><con:url>file:/Users/dineshsubramanian/demographics.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://example.com/demographics" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://example.com/demographics" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <types>
+    <xsd:schema targetNamespace="http://example.com/demographics">
+      <xsd:element name="GetCitizenDetailsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="CitizenID">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:pattern value="[A-Za-z0-9]{5,10}"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetCitizenDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="FullName" type="xsd:string"/>
+            <xsd:element name="DateOfBirth" type="xsd:date"/>
+            <xsd:element name="Address" type="xsd:string"/>
+            <xsd:element name="PhoneNumber" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+  <message name="GetCitizenDetailsInput">
+    <part name="parameters" element="tns:GetCitizenDetailsRequest"/>
+  </message>
+  <message name="GetCitizenDetailsOutput">
+    <part name="parameters" element="tns:GetCitizenDetailsResponse"/>
+  </message>
+  <portType name="CitizenDemographicsPortType">
+    <operation name="GetCitizenDetails">
+      <input message="tns:GetCitizenDetailsInput"/>
+      <output message="tns:GetCitizenDetailsOutput"/>
+    </operation>
+  </portType>
+  <binding name="CitizenDemographicsBinding" type="tns:CitizenDemographicsPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetCitizenDetails">
+      <soap:operation soapAction="http://example.com/demographics/GetCitizenDetails"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="CitizenDemographicsService">
+    <port name="CitizenDemographicsPort" binding="tns:CitizenDemographicsBinding">
+      <soap:address location="http://example.com/demographics/service"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://example.com/demographics/service</con:endpoint></con:endpoints><con:operation id="486e5424-3121-4628-b218-06e521494ceb" isOneWay="false" action="http://example.com/demographics/GetCitizenDetails" name="GetCitizenDetails" bindingOperationName="GetCitizenDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="43620671-e492-4501-9712-aa40a81fd12f" name="JohnDoeRequest"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/demographics</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dem="http://example.com/demographics">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <dem:GetCitizenDetailsRequest>
+         <CitizenID>12345</CitizenID>
+      </dem:GetCitizenDetailsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/demographics/GetCitizenDetails"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="dea7047f-a987-4d93-ba65-2c42840a87ee" port="8080" path="/demographics" host="Dineshs-MacBook-Pro-2.local" name="GetCitizenDetailsMock" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:onRequestScript>log.info "on request script"</con:onRequestScript><con:mockOperation name="GetCitizenDetails" id="73fa79c2-2b20-47a5-8af2-c43900736fac" interface="CitizenDemographicsBinding" operation="GetCitizenDetails"><con:settings/><con:defaultResponse>mockResponse</con:defaultResponse><con:dispatchStyle>RANDOM</con:dispatchStyle><con:dispatchPath/><con:response name="mockResponse" id="a2dc39f3-0e6a-4571-aaae-6cf6b1aedb9c" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script><![CDATA[// Access the raw request content
+def requestContent = mockRequest.requestContent
+
+// Parse the request content as XML
+def requestXml = new XmlSlurper().parseText(requestContent)
+
+// Extract the CitizenID value
+def citizenID = requestXml.'**'.find { it.name() == 'CitizenID' }?.text()
+
+// Define responses for specific CitizenID values
+def responses = [
+    "12345": """<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://example.com/demographics">
+                   <soapenv:Header/>
+                   <soapenv:Body>
+                      <tns:GetCitizenDetailsResponse>
+                         <FullName>John Doe</FullName>
+                         <DateOfBirth>1985-07-16</DateOfBirth>
+                         <Address>123 Main Street, Springfield</Address>
+                         <PhoneNumber>+1234567890</PhoneNumber>
+                      </tns:GetCitizenDetailsResponse>
+                   </soapenv:Body>
+                </soapenv:Envelope>""",
+    "67890": """<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://example.com/demographics">
+                   <soapenv:Header/>
+                   <soapenv:Body>
+                      <tns:GetCitizenDetailsResponse>
+                         <FullName>Jane Smith</FullName>
+                         <DateOfBirth>1990-03-12</DateOfBirth>
+                         <Address>456 Elm Street, Springfield</Address>
+                         <PhoneNumber>+9876543210</PhoneNumber>
+                      </tns:GetCitizenDetailsResponse>
+                   </soapenv:Body>
+                </soapenv:Envelope>"""
+]
+
+
+
+// Dispatch the matching response or a default one
+if (responses.containsKey(citizenID)) {
+    mockResponse.responseContent = responses[citizenID]
+} else {
+    mockResponse.responseContent = """<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://example.com/demographics">
                                          <soapenv:Header/>
                                          <soapenv:Body>
                                             <tns:GetCitizenDetailsResponse>
@@ -9,4 +145,16 @@
                                                <PhoneNumber>Unknown</PhoneNumber>
                                             </tns:GetCitizenDetailsResponse>
                                          </soapenv:Body>
-                                      </soapenv:Envelope>
+                                      </soapenv:Envelope>"""
+}
+]]></con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://example.com/demographics">
+                                         <soapenv:Header/>
+                                         <soapenv:Body>
+                                            <tns:GetCitizenDetailsResponse>
+                                               <FullName>Unknown Citizen</FullName>
+                                               <DateOfBirth>0000-00-00</DateOfBirth>
+                                               <Address>Unknown</Address>
+                                               <PhoneNumber>Unknown</PhoneNumber>
+                                            </tns:GetCitizenDetailsResponse>
+                                         </soapenv:Body>
+                                      </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/demographics/GetCitizenDetails"/></con:response><con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
