@@ -14,8 +14,7 @@ Endpoint: http://localhost:8080/demographics
     </soapenv:Body>
 </soapenv:Envelope>
 
-```xml
-        soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://example.com/demographics">
+soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://example.com/demographics">
 <soapenv:Header/>
 <soapenv:Body>
 <tns:GetCitizenDetailsResponse>
