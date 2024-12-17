@@ -1,0 +1,11 @@
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.tigo.com/GetSubscriberInfoFault/V1"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hdr="http://xmlns.tigo.com/ResponseHeader/V3">
+  <xsd:import namespace="http://xmlns.tigo.com/ResponseHeader/V3" schemaLocation="ResponseHeaderV3.xsd"/>
+  <xsd:element name="GetSubscriberInfoFault">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="hdr:ResponseHeader"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

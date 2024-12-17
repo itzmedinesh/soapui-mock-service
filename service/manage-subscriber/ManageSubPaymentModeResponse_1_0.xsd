@@ -1,0 +1,28 @@
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.demo.io/ManageSubPaymentModeResponse/V1" xmlns:cs2="http://xmlns.demo.io/ManageSubPaymentModeResponse/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hdr="http://xmlns.demo.io/ResponseHeader/V3" xmlns:par="http://xmlns.demo.io/ParameterType/V2" xmlns:sub="http://xmlns.demo.io/SubscriberType/V1">
+  <xsd:import namespace="http://xmlns.demo.io/ResponseHeader/V3" schemaLocation="ResponseHeaderV3.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/SubscriberType/V1" schemaLocation="SubscriberTypeV1.xsd"/>
+  <xsd:element name="ManageSubPaymentModeResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="hdr:ResponseHeader"/>
+        <xsd:element name="ResponseBody">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="success" type="xsd:boolean"/>
+              <xsd:element name="productOrderInfo" type="sub:ProductOrderInfoType" minOccurs="0" maxOccurs="unbounded"/>
+              <xsd:element name="accountCode" type="xsd:string" nillable="true" minOccurs="0"/>
+              <xsd:element name="additionalResult" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

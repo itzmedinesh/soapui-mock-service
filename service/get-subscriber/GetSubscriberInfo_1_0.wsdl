@@ -1,0 +1,53 @@
+<wsdl:definitions name="GetSubscriberInfo" targetNamespace="http://xmlns.demo.io/GetSubscriberInfo/V1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:gs1="http://xmlns.demo.io/GetSubscriberInfoRequest/V1"
+                  xmlns:gs2="http://xmlns.demo.io/GetSubscriberInfoResponse/V1"
+                  xmlns:gsf="http://xmlns.demo.io/GetSubscriberInfoFault/V1"
+                  xmlns:gss="http://xmlns.demo.io/GetSubscriberInfo/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.demo.io/GetSubscriberInfoRequest/V1"
+                  schemaLocation="GetSubscriberInfoRequest_1_0.xsd"/>
+      <xsd:import namespace="http://xmlns.demo.io/GetSubscriberInfoResponse/V1"
+                  schemaLocation="GetSubscriberInfoResponse_1_0.xsd"/>
+      <xsd:import namespace="http://xmlns.demo.io/GetSubscriberInfoFault/V1"
+                  schemaLocation="GetSubscriberInfoFault_1_0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetSubscriberInfo">
+    <wsdl:part name="GetSubscriberInfo" element="gs1:GetSubscriberInfoRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetSubscriberInfoResponse">
+    <wsdl:part name="GetSubscriberInfoResponse" element="gs2:GetSubscriberInfoResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetSubscriberInfoFault">
+    <wsdl:part name="GetSubscriberInfoFault" element="gsf:GetSubscriberInfoFault"/>
+  </wsdl:message>
+  <wsdl:portType name="GetSubscriberInfoPortType">
+    <wsdl:operation name="GetSubscriberInfo">
+      <wsdl:input message="gss:GetSubscriberInfo"/>
+      <wsdl:output message="gss:GetSubscriberInfoResponse"/>
+      <wsdl:fault name="GetSubscriberInfoFault" message="gss:GetSubscriberInfoFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetSubscriberInfoBinding" type="gss:GetSubscriberInfoPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="GetSubscriberInfo">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal" parts="GetSubscriberInfo"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="GetSubscriberInfoResponse"/>
+      </wsdl:output>
+      <wsdl:fault name="GetSubscriberInfoFault">
+        <soap:fault name="GetSubscriberInfoFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetSubscriberInfoService">
+    <wsdl:port name="GetSubscriberInfo" binding="gss:GetSubscriberInfoBinding">
+      <soap:address location="http://localhost:8000/subscriptions/GetSubscriberInfo_1_0"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

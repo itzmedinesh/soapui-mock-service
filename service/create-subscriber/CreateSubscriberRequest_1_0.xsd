@@ -1,0 +1,76 @@
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.demo.io/CreateSubscriberRequest/V1"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hdr="http://xmlns.demo.io/RequestHeader/V3"
+            xmlns:par="http://xmlns.demo.io/ParameterType/V2"
+            xmlns:cs1="http://xmlns.demo.io/CreateSubscriberRequest/V1" xmlns:cor="http://xmlns.demo.io/CoreData/V1"
+            xmlns:ct="http://xmlns.demo.io/CustomerType/V1" xmlns:sub="http://xmlns.demo.io/SubscriberType/V1"
+            xmlns:acc="http://xmlns.demo.io/AccountType/V1">
+  <xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/RequestHeader/V3" schemaLocation="RequestHeaderV3.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/CoreData/V1" schemaLocation="CoreData_1_0.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/CustomerType/V1" schemaLocation="CustomerTypeV1.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/SubscriberType/V1" schemaLocation="SubscriberTypeV1.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/AccountType/V1" schemaLocation="AccountTypeV1.xsd"/>
+  <xsd:element name="CreateSubscriberRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="hdr:RequestHeader"/>
+        <xsd:element name="requestBody">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="msisdn">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:integer">
+                    <xsd:minInclusive value="1"/>
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="imsi" type="xsd:string"/>
+              <xsd:element name="KI" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="customer" type="ct:CustomerType"/>
+              <xsd:element name="subscriber" type="sub:SubscriberType"/>
+              <xsd:element name="account" type="acc:AccountType"/>
+              <xsd:element name="orderBMList" type="cs1:orderBMListType" minOccurs="0"/>
+              <xsd:element name="products" type="cs1:products"/>
+              <xsd:element name="additionalParameters" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="products">
+    <xsd:sequence>
+      <xsd:element name="product" type="sub:Product" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="orderBMItem">
+    <xsd:all>
+      <xsd:element name="billMediumId" type="xsd:int"/>
+      <xsd:element name="isAllItemSub" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="detailSubList" type="cs1:detailSubListType" minOccurs="0"/>
+      <xsd:element name="effDate" type="xsd:string"/>
+      <xsd:element name="expireDate" type="xsd:string" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="orderBMListType">
+    <xsd:sequence maxOccurs="unbounded">
+      <xsd:element name="orderBM" type="cs1:orderBMItem" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="detailSubListType">
+    <xsd:sequence maxOccurs="unbounded">
+      <xsd:element name="detailSub" type="cs1:detailSubItem" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="detailSubItem">
+    <xsd:all>
+      <xsd:element name="subId" type="xsd:string"/>
+    </xsd:all>
+  </xsd:complexType>
+</xsd:schema>

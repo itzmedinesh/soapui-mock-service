@@ -1,0 +1,45 @@
+<wsdl:definitions name="CreateAccount" targetNamespace="http://xmlns.demo.io/CreateAccount/V1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cs1="http://xmlns.demo.io/CreateAccountRequest/V1" xmlns:cs2="http://xmlns.demo.io/CreateAccountResponse/V1" xmlns:css="http://xmlns.demo.io/CreateAccount/V1" xmlns:csf="http://xmlns.demo.io/CreateAccountFault/V1">
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://xmlns.demo.io/CreateAccountRequest/V1" schemaLocation="CreateAccountRequest_1_0.xsd"/>
+			<xsd:import namespace="http://xmlns.demo.io/CreateAccountResponse/V1" schemaLocation="CreateAccountResponse_1_0.xsd"/>
+			<xsd:import namespace="http://xmlns.demo.io/CreateAccountFault/V1" schemaLocation="CreateAccountFault_1_0.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="CreateAccount">
+		<wsdl:part name="CreateAccount" element="cs1:CreateAccountRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateAccountResponse">
+		<wsdl:part name="CreateAccountResponse" element="cs2:CreateAccountResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateAccountFault">
+		<wsdl:part name="CreateAccountFault" element="csf:CreateAccountFault"/>
+	</wsdl:message>
+	<wsdl:portType name="CreateAccountPortType">
+		<wsdl:operation name="CreateAccount">
+			<wsdl:input message="css:CreateAccount"/>
+			<wsdl:output message="css:CreateAccountResponse"/>
+			<wsdl:fault name="CreateAccountFault" message="css:CreateAccountFault"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CreateAccountBinding" type="css:CreateAccountPortType">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="CreateAccount">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal" parts="CreateAccount"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" parts="CreateAccountResponse"/>
+			</wsdl:output>
+			<wsdl:fault name="CreateAccountFault">
+				<soap:fault name="CreateAccountFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CreateAccountService">
+		<wsdl:port name="CreateAccount" binding="css:CreateAccountBinding">
+			<soap:address location="http://localhost:8000/accounts/CreateAccount_1_0"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

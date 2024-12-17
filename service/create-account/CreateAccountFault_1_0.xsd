@@ -1,0 +1,10 @@
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.demo.io/CreateAccountFault/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hdr="http://xmlns.demo.io/ResponseHeader/V3">
+	<xsd:import namespace="http://xmlns.demo.io/ResponseHeader/V3" schemaLocation="ResponseHeaderV3.xsd"/>
+	<xsd:element name="CreateAccountFault">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="hdr:ResponseHeader"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

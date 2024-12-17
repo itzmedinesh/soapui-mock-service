@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://xmlns.demo.io/CoreData/V1" xmlns:cor="http://xmlns.demo.io/CoreData/V1"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xsd:complexType name="responseBodyType">
+    <xsd:sequence>
+      <xsd:element name="responseCode" type="xsd:string"/>
+      <xsd:element name="responseMessage" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="msisdnType">
+    <xsd:annotation>
+      <xsd:documentation>
+				Mobile Phone numbers (MSISDNs) should always be defined
+				as strings, including country codes i.e. "255713412345";			
+		</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

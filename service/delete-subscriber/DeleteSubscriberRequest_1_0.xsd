@@ -1,0 +1,27 @@
+<xsd:schema targetNamespace="http://xmlns.demo.io/DeleteSubscriberRequest/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xmlns.demo.io/DeleteSubscriberRequest/V1" xmlns:hd1="http://xmlns.demo.io/RequestHeader/V3" xmlns:par="http://xmlns.demo.io/ParameterType/V2" xmlns:cor="http://xmlns.demo.io/CoreData/V1">
+	<xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+	<xsd:import namespace="http://xmlns.demo.io/RequestHeader/V3" schemaLocation="RequestHeaderV3.xsd"/>
+	<xsd:import namespace="http://xmlns.demo.io/CoreData/V1" schemaLocation="CoreData_1_0.xsd"/>
+	<xsd:element name="DeleteSubscriberRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="hd1:RequestHeader"/>
+				<xsd:element name="requestBody">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="msisdn" type="cor:msisdnType" minOccurs="1"/>
+							<xsd:element name="KI" type="xsd:string" minOccurs="0"/>
+						  	<xsd:element minOccurs="0" name="additionalParameters">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element ref="par:ParameterType" maxOccurs="unbounded" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

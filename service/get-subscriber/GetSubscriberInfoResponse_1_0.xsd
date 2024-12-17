@@ -1,0 +1,80 @@
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.demo.io/GetSubscriberInfoResponse/V1"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hdr="http://xmlns.demo.io/ResponseHeader/V3"
+            xmlns:par="http://xmlns.demo.io/ParameterType/V2" xmlns:cor="http://xmlns.demo.io/CoreData/V1"
+            xmlns:ct="http://xmlns.demo.io/CustomerType/V1" xmlns:sub="http://xmlns.demo.io/SubscriberType/V1"
+            xmlns:acc="http://xmlns.demo.io/AccountType/V1"
+            xmlns:gs2="http://xmlns.demo.io/GetSubscriberInfoResponse/V1">
+  <xsd:import namespace="http://xmlns.demo.io/ResponseHeader/V3" schemaLocation="ResponseHeaderV3.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/CoreData/V1" schemaLocation="CoreData_1_0.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/CustomerType/V1" schemaLocation="CustomerTypeV1.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/SubscriberType/V1" schemaLocation="SubscriberTypeV1.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/AccountType/V1" schemaLocation="AccountTypeV1.xsd"/>
+  <xsd:element name="GetSubscriberInfoResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="hdr:ResponseHeader"/>
+        <xsd:element name="responseBody">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="msisdn" type="cor:msisdnType"/>
+              <xsd:element name="customer" type="ct:CustomerType" minOccurs="0"/>
+              <xsd:element name="subscriber" minOccurs="0" type="sub:SubscriberType"/>
+              <xsd:element name="products" type="gs2:products" minOccurs="0"/>
+              <xsd:element name="services" type="gs2:services" minOccurs="0"/>
+              <xsd:element name="accounts" type="gs2:accounts" minOccurs="0"/>
+              <xsd:element name="additionalResult" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="products">
+    <xsd:sequence>
+      <xsd:element name="product" type="gs2:product" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="product">
+    <xsd:complexContent>
+      <xsd:extension base="sub:Product">
+        <xsd:sequence>
+          <xsd:element name="productOrderKey" type="xsd:string" nillable="true" minOccurs="0"/>
+          <xsd:element name="effectiveDate" type="xsd:string"/>
+          <xsd:element name="expiredDate" type="xsd:string"/>
+          <xsd:element name="status" type="xsd:string" nillable="true"/>
+          <xsd:element name="cycleStartTime" type="xsd:string" nillable="true" minOccurs="0"/>
+          <xsd:element name="cycleEndTime" type="xsd:string" nillable="true" minOccurs="0"/>
+          <xsd:element name="billStatus" type="xsd:int" nillable="true" minOccurs="0"/>
+          <xsd:element name="bindSubscriberNo" type="sub:BindSubscriberNo" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="services">
+    <xsd:sequence>
+      <xsd:element name="service" type="sub:Service" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="accounts">
+    <xsd:sequence>
+      <xsd:element name="account" type="gs2:account" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="account">
+    <xsd:complexContent>
+      <xsd:extension base="acc:AccountType">
+        <xsd:sequence>
+          <xsd:element name="subscriberNumber" type="cor:msisdnType" nillable="true" minOccurs="0"
+                       maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

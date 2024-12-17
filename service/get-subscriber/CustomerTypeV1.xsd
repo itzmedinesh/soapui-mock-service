@@ -1,0 +1,188 @@
+<xsd:schema targetNamespace="http://xmlns.demo.io/CustomerType/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cor="http://xmlns.demo.io/CoreData/V1" xmlns:par="http://xmlns.demo.io/ParameterType/V2" xmlns:ct="http://xmlns.demo.io/CustomerType/V1">
+	
+	<xsd:import namespace="http://xmlns.demo.io/CoreData/V1" schemaLocation="CoreData_1_0.xsd"/>
+	<xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+
+	<xsd:complexType name="CustomerType">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string"/>
+			<xsd:element name="clientCode" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="firstName" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="middleName" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="lastName" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="birthDate" type="xsd:date"/>
+			<xsd:element name="gender">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="Unspecified"/>
+						<xsd:enumeration value="Male"/>
+						<xsd:enumeration value="Female"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maritalStatus" minOccurs="0">
+			    <xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="Unspecified"/>
+						<xsd:enumeration value="Single"/>
+						<xsd:enumeration value="Married"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="address" type="xsd:string"/>
+			<xsd:element name="zipCode" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="email" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="nationality" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="documentNumber" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="documentType" type="ct:documentType" nillable="true" minOccurs="0"/>
+			<xsd:element name="documentExpeditionDate" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="belToAreaID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="clientGrade" type="ct:clientGrade"/>
+			<xsd:element name="clientType" type="ct:clientType" nillable="true" minOccurs="0"/>
+			<xsd:element name="clientState" type="ct:clientState" minOccurs="0"/>
+			<xsd:element name="economicActivity" minOccurs="0">
+			<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="Unspecified"/>
+						<xsd:enumeration value="Teacher"/>
+						<xsd:enumeration value="Doctor"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="socialNumber" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="admissionDate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="segmentation" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="scoring" type="ct:scoringType" minOccurs="0"/>
+			<!-- The below elements are for future use -->
+			<xsd:element name="fax" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ruc" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="businessName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="baseCurrency" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="guaranteesNumber" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="additionalProperties" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="UpdateCustomerType">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="clientCode" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="firstName" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="middleName" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="lastName" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="birthDate" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="gender" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="Female"/>
+						<xsd:enumeration value="Male"/>
+						<xsd:enumeration value="Unspecified"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maritalStatus" minOccurs="0">
+			    <xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="Unspecified"/>
+						<xsd:enumeration value="Single"/>
+						<xsd:enumeration value="Married"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="address" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="zipCode" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="email" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="nationality" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="documentNumber" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="documentType" type="ct:documentType" nillable="true" minOccurs="0"/>
+			<xsd:element name="documentExpeditionDate" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="belToAreaID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="clientGrade" type="ct:clientGrade" minOccurs="0"/>
+			<xsd:element name="clientType" type="ct:clientType" nillable="true" minOccurs="0"/>
+			<xsd:element name="clientState" type="ct:clientState" minOccurs="0"/>
+			<xsd:element name="economicActivity" minOccurs="0">
+			<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="Unspecified"/>
+						<xsd:enumeration value="Teacher"/>
+						<xsd:enumeration value="Doctor"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="socialNumber" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="admissionDate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="segmentation" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="scoring" type="ct:scoringType" minOccurs="0"/>
+			<xsd:element name="reason" type="xsd:string" minOccurs="0"/>	
+			<!-- The below elements are for future use -->
+			<xsd:element name="fax" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ruc" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="businessName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="baseCurrency" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="guaranteesNumber" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="additionalProperties" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="scoringType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SilverClass"/>
+			<xsd:enumeration value="GoldClass"/>
+			<xsd:enumeration value="Unspecific"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="documentType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="IDCard"/>
+			<xsd:enumeration value="OfficerCard"/>
+			<xsd:enumeration value="Passport"/>
+			<xsd:enumeration value="DrivingLicense"/>
+			<xsd:enumeration value="BusinessLicense"/>
+                        <xsd:enumeration value="National ID"/>
+			<xsd:enumeration value="Others"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="clientType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Individual"/>
+			<xsd:enumeration value="CUG"/>
+			<xsd:enumeration value="Company"/>
+			<xsd:enumeration value="Agent"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="clientState">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Normal"/>
+			<xsd:enumeration value="Abnormal"/>
+			<xsd:enumeration value="Unspecified"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="clientGrade">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Default"/>
+			<xsd:enumeration value="Unspecified"/>
+			<xsd:enumeration value="CustomerLevel1"/>
+			<xsd:enumeration value="CustomerLevel2"/>
+			<xsd:enumeration value="CustomerLevel3"/>
+			<xsd:enumeration value="CustomerLevel4"/>
+			<xsd:enumeration value="CustomerLevel5"/>
+			<xsd:enumeration value="CustomerLevel6"/>
+			<xsd:enumeration value="CustomerLevel7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,39 @@
+<xsd:schema targetNamespace="http://xmlns.demo.io/AccountType/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:acc="http://xmlns.demo.io/AccountType/V1" xmlns:par="http://xmlns.demo.io/ParameterType/V2">
+
+<xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+
+	<xsd:complexType name="AccountType">
+		<xsd:sequence>
+			<xsd:element name="customerName" type="xsd:string"/>
+			<xsd:element name="code" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="address" type="xsd:string"/>
+			<xsd:element name="title" type="xsd:string"/>
+			<xsd:element name="billcycleType" type="xsd:int" nillable="true"/>
+			<xsd:element name="relationCustomer" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="parentAcctCode" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="additionalProperties" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AccountType2">
+		<xsd:sequence>
+			<xsd:element name="customerName" type="xsd:string"/>
+			<xsd:element name="address" type="xsd:string"/>
+			<xsd:element name="title" type="xsd:string"/>
+			<xsd:element name="parentAcctCode" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="additionalProperties" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>		
+</xsd:schema>

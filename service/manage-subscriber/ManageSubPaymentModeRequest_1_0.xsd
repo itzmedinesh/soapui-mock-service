@@ -1,0 +1,91 @@
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.demo.io/ManageSubPaymentModeRequest/V1" xmlns:msp1="http://xmlns.demo.io/ManageSubPaymentModeRequest/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hdr="http://xmlns.demo.io/RequestHeader/V3" xmlns:par="http://xmlns.demo.io/ParameterType/V2">
+  <xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/RequestHeader/V3" schemaLocation="RequestHeaderV3.xsd"/>
+  <xsd:element name="ManageSubPaymentModeRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="hdr:RequestHeader"/>
+        <xsd:element name="RequestBody">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="msisdn">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:integer">
+                    <xsd:minInclusive value="1"/>
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="opType">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Prepaid_To_Postpaid"/>
+                    <xsd:enumeration value="Postpaid_To_Prepaid"/>
+                    <xsd:enumeration value="Prepaid_To_Hybrid"/>
+                    <xsd:enumeration value="Postpaid_To_Hybrid"/>
+                    <xsd:enumeration value="Hybrid_To_Prepaid"/>
+                    <xsd:enumeration value="Hybrid_To_Postpaid"/>
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="newMainProductId">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="1"/>
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="subOldAcct" type="msp1:DFTAcctType" minOccurs="0"/>
+              <xsd:element name="address" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="account" type="msp1:AcctType" minOccurs="0"/>
+              <xsd:element name="effectiveMode">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Immediately"/>
+                    <xsd:enumeration value="Next_Bill_Cycle"/>
+                    <xsd:enumeration value="Specified_Time"/>
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="effectiveDate" type="xsd:dateTime" minOccurs="0"/>
+              <xsd:element name="additionalParameters" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="DFTAcctType">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element name="prePaidAcctCode" type="xsd:string"/>
+        <xsd:element name="postPaidAcctCode" type="xsd:string"/>
+      </xsd:choice>
+      <xsd:element name="defaultAcctCode" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AcctType">
+    <xsd:sequence>
+      <xsd:element name="acctKey" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="acctCode" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="billCycleType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="payMode">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Prepaid"/>
+            <xsd:enumeration value="Postpaid"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="initBalance" type="xsd:double" minOccurs="0"/>
+      <xsd:element name="emailBillAddr" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="smsBillAdd" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="posAcctCredit" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

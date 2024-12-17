@@ -1,0 +1,45 @@
+<wsdl:definitions name="ManageSubPaymentMode" targetNamespace="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1" xmlns:msp1="http://xmlns.demo.io/ManageSubPaymentModeRequest/V1" xmlns:msp2="http://xmlns.demo.io/ManageSubPaymentModeResponse/V1" xmlns:msp="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mspf="http://xmlns.demo.io/ManageSubPaymentModeFault/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.demo.io/ManageSubPaymentModeRequest/V1" schemaLocation="ManageSubPaymentModeRequest_1_0.xsd"/>
+      <xsd:import namespace="http://xmlns.demo.io/ManageSubPaymentModeResponse/V1" schemaLocation="ManageSubPaymentModeResponse_1_0.xsd"/>
+      <xsd:import namespace="http://xmlns.demo.io/ManageSubPaymentModeFault/V1" schemaLocation="ManageSubPaymentModeFault_1_0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ManageSubPaymentMode">
+    <wsdl:part name="ManageSubPaymentMode" element="msp1:ManageSubPaymentModeRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ManageSubPaymentModeResponse">
+    <wsdl:part name="ManageSubPaymentModeResponse" element="msp2:ManageSubPaymentModeResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ManageSubPaymentModeFault">
+    <wsdl:part name="ManageSubPaymentModeFault" element="mspf:ManageSubPaymentModeFault"/>
+  </wsdl:message>
+  <wsdl:portType name="ManageSubPaymentModePortType">
+    <wsdl:operation name="ManageSubPaymentMode">
+      <wsdl:input message="msp:ManageSubPaymentMode"/>
+      <wsdl:output message="msp:ManageSubPaymentModeResponse"/>
+      <wsdl:fault name="ManageSubPaymentModeFault" message="msp:ManageSubPaymentModeFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ManageSubPaymentModeBinding" type="msp:ManageSubPaymentModePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="ManageSubPaymentMode">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal" parts="ManageSubPaymentMode"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="ManageSubPaymentModeResponse"/>
+      </wsdl:output>
+      <wsdl:fault name="ManageSubPaymentModeFault">
+        <soap:fault name="ManageSubPaymentModeFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ManageSubPaymentMode">
+    <wsdl:port name="ManageSubPaymentMode" binding="msp:ManageSubPaymentModeBinding">
+      <soap:address location="http://localhost:8000/subscriptions/ManageSubPaymentMode_1_0"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
