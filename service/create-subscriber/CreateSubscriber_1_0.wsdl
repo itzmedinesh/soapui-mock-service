@@ -1,0 +1,45 @@
+<wsdl:definitions name="CreateSubscriber" targetNamespace="http://xmlns.demo.io/CreateSubscriber/V1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cs1="http://xmlns.demo.io/CreateSubscriberRequest/V1" xmlns:cs2="http://xmlns.demo.io/CreateSubscriberResponse/V1" xmlns:css="http://xmlns.demo.io/CreateSubscriber/V1" xmlns:csf="http://xmlns.demo.io/CreateSubscriberFault/V1">
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://xmlns.demo.io/CreateSubscriberRequest/V1" schemaLocation="CreateSubscriberRequest_1_0.xsd"/>
+			<xsd:import namespace="http://xmlns.demo.io/CreateSubscriberResponse/V1" schemaLocation="CreateSubscriberResponse_1_0.xsd"/>
+			<xsd:import namespace="http://xmlns.demo.io/CreateSubscriberFault/V1" schemaLocation="CreateSubscriberFault_1_0.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="CreateSubscriber">
+		<wsdl:part name="CreateSubscriber" element="cs1:CreateSubscriberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CreateSubscriberResponse">
+		<wsdl:part name="CreateSubscriberResponse" element="cs2:CreateSubscriberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateSubscriberFault">
+		<wsdl:part name="CreateSubscriberFault" element="csf:CreateSubscriberFault"/>
+	</wsdl:message>
+	<wsdl:portType name="CreateSubscriberPortType">
+		<wsdl:operation name="CreateSubscriber">
+			<wsdl:input message="css:CreateSubscriber"/>
+			<wsdl:output message="css:CreateSubscriberResponse"/>
+			<wsdl:fault name="CreateSubscriberFault" message="css:CreateSubscriberFault"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CreateSubscriberBinding" type="css:CreateSubscriberPortType">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="CreateSubscriber">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal" parts="CreateSubscriber"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" parts="CreateSubscriberResponse"/>
+			</wsdl:output>
+			<wsdl:fault name="CreateSubscriberFault">
+				<soap:fault name="CreateSubscriberFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CreateSubscriberService">
+		<wsdl:port name="CreateSubscriber" binding="css:CreateSubscriberBinding">
+			<soap:address location="http://localhost:8000/subscriptions/CreateSubscriber_1_0"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

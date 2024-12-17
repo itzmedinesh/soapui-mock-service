@@ -1,0 +1,33 @@
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.demo.io/ResetSubscriberRequest/V1"
+            xmlns:rs1="http://xmlns.demo.io/ResetSubscriberRequest/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:hd1="http://xmlns.demo.io/RequestHeader/V3" xmlns:par="http://xmlns.demo.io/ParameterType/V2"
+            xmlns:cor="http://xmlns.demo.io/CoreData/V1">
+  <xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/RequestHeader/V3" schemaLocation="RequestHeaderV3.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/CoreData/V1" schemaLocation="CoreData_1_0.xsd"/>
+  <xsd:element name="ResetSubscriberRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <!-- Datos de la cabecera -->
+        <xsd:element ref="hd1:RequestHeader"/>
+        <xsd:element name="RequestBody" type="rs1:requestBodyType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="requestBodyType">
+    <xsd:sequence>
+      <!-- Datos input del servicio -->
+      <xsd:element name="msisdn" type="cor:msisdnType"/>
+      <xsd:element name="imsi" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="iccid" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="KI" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="additionalParameters" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

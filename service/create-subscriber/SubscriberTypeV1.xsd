@@ -1,0 +1,93 @@
+<xsd:schema targetNamespace="http://xmlns.demo.io/SubscriberType/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sub="http://xmlns.demo.io/SubscriberType/V1" xmlns:par="http://xmlns.demo.io/ParameterType/V2">
+  <xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+  <xsd:complexType name="SubscriberType">
+    <xsd:sequence>
+      <xsd:element name="imsi" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="clientCode" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="brandId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="language" type="sub:lang"/>
+      <xsd:element name="smsLanguage" type="sub:lang" minOccurs="0"/>
+      <xsd:element name="ussdLanguage" type="sub:lang" minOccurs="0"/>
+      <xsd:element name="customerType" type="sub:customerType"/>
+      <xsd:element name="initialCredit" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="belToAreaID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="mainProductID" type="xsd:string"/>
+      <xsd:element name="additionalProperties" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="customerType">
+    <xsd:annotation>
+      <xsd:documentation>Prepaid/Postpaid/Hybrid</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Prepaid"/>
+      <xsd:enumeration value="Postpaid"/>
+      <xsd:enumeration value="prepaid"/>
+      <xsd:enumeration value="postpaid"/>
+      <xsd:enumeration value="Hybrid"/>
+      <xsd:enumeration value="Unspecified"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="lang">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Swahili"/>
+      <xsd:enumeration value="English"/>
+      <xsd:enumeration value="French"/>
+      <xsd:enumeration value="Wolof"/>
+      <xsd:enumeration value="Lingala"/>
+      <xsd:enumeration value="Kikongo"/>
+      <xsd:enumeration value="Tshiluba"/>
+      <xsd:enumeration value="Unspecified"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="Product">
+    <xsd:sequence>
+      <xsd:element name="productId" type="xsd:string" nillable="true"/>
+      <xsd:element name="additionalProperties" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ProductOrderInfoType">
+    <xsd:all>
+      <xsd:element name="productID" type="xsd:string" nillable="true"/>
+      <xsd:element name="productOrderKey" type="xsd:string" nillable="true"/>
+      <xsd:element name="effectiveDate" type="xsd:string"/>
+      <xsd:element name="expireDate" type="xsd:string"/>
+      <xsd:element name="autoType" type="xsd:int" nillable="true"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="Service">
+    <xsd:sequence>
+      <xsd:element name="serviceId" type="xsd:string"/>
+      <xsd:element name="status" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="registrationTime" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="additionalProperties" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BindSubscriberNo">
+    <xsd:all>
+      <xsd:element name="subscriberNo" type="xsd:string"/>
+      <xsd:element name="subscriberNoType" type="xsd:int"/>
+      <xsd:element name="imsi" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="applyTime" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="expireTime" type="xsd:string" nillable="true" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+</xsd:schema>

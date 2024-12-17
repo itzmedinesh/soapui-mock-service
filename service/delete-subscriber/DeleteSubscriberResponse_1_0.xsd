@@ -1,0 +1,20 @@
+<xsd:schema targetNamespace="http://xmlns.demo.io/DeleteSubscriberResponse/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xmlns.demo.io/DeleteSubscriberResponse/V1" xmlns:hd2="http://xmlns.demo.io/ResponseHeader/V3" xmlns:par="http://xmlns.demo.io/ParameterType/V2" xmlns:cor="http://xmlns.demo.io/CoreData/V1">
+	<xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+	<xsd:import namespace="http://xmlns.demo.io/ResponseHeader/V3" schemaLocation="ResponseHeaderV3.xsd"/>
+	<xsd:import namespace="http://xmlns.demo.io/CoreData/V1" schemaLocation="CoreData_1_0.xsd"/>
+	<xsd:element name="DeleteSubscriberResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="hd2:ResponseHeader"/>
+				<xsd:element name="ResponseBody" type="cor:responseBodyType"/>
+				<xsd:element name="additionalResult" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+					</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>				
+</xsd:schema>

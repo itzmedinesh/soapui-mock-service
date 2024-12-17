@@ -1,0 +1,38 @@
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.demo.io/GetSubscriberInfoRequest/V1"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hdr="http://xmlns.demo.io/RequestHeader/V3"
+            xmlns:par="http://xmlns.demo.io/ParameterType/V2" xmlns:cor="http://xmlns.demo.io/CoreData/V1"
+            xmlns:gs1="http://xmlns.demo.io/GetSubscriberInfoRequest/V1">
+  <xsd:import namespace="http://xmlns.demo.io/ParameterType/V2" schemaLocation="ParameterTypeV2.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/RequestHeader/V3" schemaLocation="RequestHeaderV3.xsd"/>
+  <xsd:import namespace="http://xmlns.demo.io/CoreData/V1" schemaLocation="CoreData_1_0.xsd"/>
+  <xsd:element name="GetSubscriberInfoRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="hdr:RequestHeader"/>
+        <xsd:element name="requestBody">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="msisdn" type="cor:msisdnType"/>
+              <xsd:element name="searchType" type="gs1:searchType"/>
+              <xsd:element name="additionalParameters" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element ref="par:ParameterType" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:simpleType name="searchType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="CUSTOMER"/>
+      <xsd:enumeration value="SUBSCRIBER"/>
+      <xsd:enumeration value="ACCOUNT"/>
+      <xsd:enumeration value="ALL"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

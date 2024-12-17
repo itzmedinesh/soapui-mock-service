@@ -1,0 +1,45 @@
+<wsdl:definitions name="ResetSubscriber" targetNamespace="http://xmlns.demo.io/Service/ResetSubscriber/V1" xmlns:rss="http://xmlns.demo.io/Service/ResetSubscriber/V1" xmlns:rs2="http://xmlns.demo.io/ResetSubscriberResponse/V1" xmlns:rs1="http://xmlns.demo.io/ResetSubscriberRequest/V1" xmlns:rsf="http://xmlns.demo.io/ResetSubscriberFault/V1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://xmlns.demo.io/ResetSubscriberRequest/V1" schemaLocation="ResetSubscriberRequest_1_0.xsd"/>
+			<xsd:import namespace="http://xmlns.demo.io/ResetSubscriberResponse/V1" schemaLocation="ResetSubscriberResponse_1_0.xsd"/>
+			<xsd:import namespace="http://xmlns.demo.io/ResetSubscriberFault/V1" schemaLocation="ResetSubscriberFault_1_0.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="ResetSubscriber">
+		<wsdl:part name="ResetSubscriber" element="rs1:ResetSubscriberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ResetSubscriberResponse">
+		<wsdl:part name="ResetSubscriberResponse" element="rs2:ResetSubscriberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ResetSubscriberFault">
+      <wsdl:part name="ResetSubscriberFault" element="rsf:ResetSubscriberFault"/>
+   </wsdl:message>
+	<wsdl:portType name="ResetSubscriberPortType">
+		<wsdl:operation name="ResetSubscriber">
+			<wsdl:input message="rss:ResetSubscriber"/>
+			<wsdl:output message="rss:ResetSubscriberResponse"/>
+			<wsdl:fault name="ResetSubscriberFault" message="rss:ResetSubscriberFault"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ResetSubscriberBinding" type="rss:ResetSubscriberPortType">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="ResetSubscriber">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal" parts="ResetSubscriber"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" parts="ResetSubscriberResponse"/>
+			</wsdl:output>
+			<wsdl:fault name="ResetSubscriberFault">
+				<soap:fault name="ResetSubscriberFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ResetSubscriberService">
+		<wsdl:port name="ResetSubscriber" binding="rss:ResetSubscriberBinding">
+			<soap:address location="http://localhsot:8000/subscriptions/ResetSubscriber_1_0"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

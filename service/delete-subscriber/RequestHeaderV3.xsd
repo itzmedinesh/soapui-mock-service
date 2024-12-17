@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema targetNamespace="http://xmlns.demo.io/RequestHeader/V3" xmlns:cmn="http://xmlns.demo.io/RequestHeader/V3"
+            elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="RequestHeader">
+    <xsd:complexType>
+      <xsd:all>
+        <xsd:element name="GeneralConsumerInformation" type="cmn:GeneralConsumerInfoType"/>
+      </xsd:all>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="GeneralConsumerInfoType">
+    <xsd:sequence>
+      <xsd:element name="consumerID" type="xsd:string" minOccurs="1" nillable="true"/>
+      <xsd:element name="transactionID" type="xsd:string" minOccurs="0" nillable="true"/>
+      <xsd:element name="country" type="cmn:CountryContentType" nillable="false" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="correlationID" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="CountryContentType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="SLV"/>
+      <xsd:enumeration value="GTM"/>
+      <xsd:enumeration value="HND"/>
+      <xsd:enumeration value="BOL"/>
+      <xsd:enumeration value="COL"/>
+      <xsd:enumeration value="PRY"/>
+      <xsd:enumeration value="TCD"/>
+      <xsd:enumeration value="COD"/>
+      <xsd:enumeration value="GHA"/>
+      <xsd:enumeration value="MUS"/>
+      <xsd:enumeration value="RWA"/>
+      <xsd:enumeration value="SEN"/>
+      <xsd:enumeration value="TZA"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>
