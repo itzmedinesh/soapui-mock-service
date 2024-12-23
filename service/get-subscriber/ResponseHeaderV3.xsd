@@ -16,7 +16,7 @@
     		<xsd:element name="code" type="xsd:string" minOccurs="0" nillable="true"/>
     		<xsd:element name="codeType" type="xsd:string" minOccurs="0" nillable="true"/>
     		<xsd:element name="description" type="xsd:string" minOccurs="0" nillable="true"/>
-                <xsd:element name="additionalInfo" type="xsd:string" minOccurs="0" nillable="true"/>
+			<xsd:element name="additionalInfo" type="xsd:string" minOccurs="0" nillable="true"/>
     	</xsd:sequence>
 	</xsd:complexType>
 	<xsd:simpleType name="StatusContentType">
