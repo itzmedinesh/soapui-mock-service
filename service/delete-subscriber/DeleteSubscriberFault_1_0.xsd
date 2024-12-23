@@ -1,5 +1,5 @@
-<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.tigo.com/DeleteSubscriberFault/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hdr="http://xmlns.tigo.com/ResponseHeader/V3">
-	<xsd:import namespace="http://xmlns.tigo.com/ResponseHeader/V3" schemaLocation="ResponseHeaderV3.xsd"/>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.demo.io/DeleteSubscriberFault/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hdr="http://xmlns.demo.io/ResponseHeader/V3">
+	<xsd:import namespace="http://xmlns.demo.io/ResponseHeader/V3" schemaLocation="ResponseHeaderV3.xsd"/>
 	<xsd:element name="DeleteSubscriberFault">
 		<xsd:complexType>
 			<xsd:sequence>

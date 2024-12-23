@@ -1,28 +1,28 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <xsd:schema targetNamespace="http://xmlns.demo.io/ResponseHeader/V3"
-            xmlns:cmn="http://xmlns.demo.io/ResponseHeader/V3" elementFormDefault="qualified"
-            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <xsd:element name="ResponseHeader">
-    <xsd:complexType>
-      <xsd:all>
-        <xsd:element name="GeneralResponse" type="cmn:GeneralResponseType"/>
-      </xsd:all>
-    </xsd:complexType>
-  </xsd:element>
-  <xsd:complexType name="GeneralResponseType">
-    <xsd:sequence>
-      <xsd:element name="correlationID" type="xsd:string" minOccurs="0" nillable="true"/>
-      <xsd:element name="status" type="cmn:StatusContentType" minOccurs="0" nillable="true"/>
-      <xsd:element name="code" type="xsd:string" minOccurs="0" nillable="true"/>
-      <xsd:element name="codeType" type="xsd:string" minOccurs="0" nillable="true"/>
-      <xsd:element name="description" type="xsd:string" minOccurs="0" nillable="true"/>
-      <xsd:element name="additionalInfo" type="xsd:string" minOccurs="0" nillable="true"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:simpleType name="StatusContentType">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="ERROR"/>
-      <xsd:enumeration value="OK"/>
-    </xsd:restriction>
-  </xsd:simpleType>
+	xmlns:cmn="http://xmlns.demo.io/ResponseHeader/V3"
+	elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="ResponseHeader">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="GeneralResponse" type="cmn:GeneralResponseType"/>
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="GeneralResponseType">
+    	<xsd:sequence>
+    		<xsd:element name="correlationID" type="xsd:string" minOccurs="0" nillable="true"/>
+    		<xsd:element name="status" type="cmn:StatusContentType" minOccurs="0" nillable="true"/>
+    		<xsd:element name="code" type="xsd:string" minOccurs="0" nillable="true"/>
+    		<xsd:element name="codeType" type="xsd:string" minOccurs="0" nillable="true"/>
+    		<xsd:element name="description" type="xsd:string" minOccurs="0" nillable="true"/>
+			<xsd:element name="additionalInfo" type="xsd:string" minOccurs="0" nillable="true"/>
+    	</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="StatusContentType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ERROR" />
+			<xsd:enumeration value="OK" />
+		</xsd:restriction>
+	</xsd:simpleType>
 </xsd:schema>
