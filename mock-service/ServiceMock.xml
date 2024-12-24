@@ -1688,11 +1688,11 @@
       </xsd:sequence>
     </xsd:complexType>
   </xsd:element>
-</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://THBSSTLPT-0355:8000/subscriptions</con:endpoint><con:endpoint>http://localhost:8000/subscriptions/ManageSubPaymentMode_1_0</con:endpoint></con:endpoints><con:operation id="f2148d79-3334-4ae3-8db0-cb1fc7906054" isOneWay="false" action="" name="ManageSubPaymentMode" bindingOperationName="ManageSubPaymentMode" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="240a27fa-4855-4810-a4c5-5ca626464b50" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8000/subscriptions/ManageSubPaymentMode_1_0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:msp1="http://xmlns.demo.io/ManageSubPaymentModeRequest/V1">
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://THBSSTLPT-0355:8000/subscriptions</con:endpoint><con:endpoint>http://localhost:8000/subscriptions/ManageSubPaymentMode_1_0</con:endpoint></con:endpoints><con:operation id="f2148d79-3334-4ae3-8db0-cb1fc7906054" isOneWay="false" action="" name="ManageSubPaymentMode" bindingOperationName="ManageSubPaymentMode" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="240a27fa-4855-4810-a4c5-5ca626464b50" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8000/subscriptions</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:msp1="http://xmlns.demo.io/ManageSubPaymentModeRequest/V1">
    <soapenv:Header/>
    <soapenv:Body>
       <msp1:ManageSubPaymentModeRequest>
-         <msp1:subscriberId>1234567890</msp1:subscriberId>
+         <msp1:subscriberId>1122334455</msp1:subscriberId>
          <msp1:paymentMode>CreditCard</msp1:paymentMode>
       </msp1:ManageSubPaymentModeRequest>
    </soapenv:Body>
@@ -1795,38 +1795,20 @@ if (responses.containsKey(msisdn)) {
                                          </v1:CreateSubscriberFault>
                                       </soapenv:Body>
                                    </soapenv:Envelope>"""
-}]]></con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.demo.io/CreateSubscriberResponse/V1" xmlns:v3="http://xmlns.demo.io/ResponseHeader/V3" xmlns:v11="http://xmlns.demo.io/SubscriberType/V1" xmlns:v2="http://xmlns.demo.io/ParameterType/V2">
+}]]></con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.demo.io/CreateSubscriberFault/V1" xmlns:v3="http://xmlns.demo.io/ResponseHeader/V3">
                        <soapenv:Header/>
                        <soapenv:Body>
-                          <v1:CreateSubscriberResponse>
+                          <v1:CreateSubscriberFault>
                              <v3:ResponseHeader>
                                 <v3:GeneralResponse>
                                    <v3:correlationID>corr123</v3:correlationID>
-                                   <v3:status>OK</v3:status>
-                                   <v3:code>200</v3:code>
-                                   <v3:codeType>Success</v3:codeType>
-                                   <v3:description>Subscriber created successfully</v3:description>
+                                   <v3:status>ERROR</v3:status>
+                                   <v3:code>500</v3:code>
+                                   <v3:codeType>ServerError</v3:codeType>
+                                   <v3:description>Internal server error</v3:description>
                                 </v3:GeneralResponse>
                              </v3:ResponseHeader>
-                             <v1:responseBody>
-                                <v1:success>true</v1:success>
-                                <v1:productOrderInfo>
-                                   <v11:productOrderKey>order123</v11:productOrderKey>
-                                   <v11:effectiveDate>2021-01-01</v11:effectiveDate>
-                                   <v11:expireDate>2022-01-01</v11:expireDate>
-                                   <v11:autoType>1</v11:autoType>
-                                </v1:productOrderInfo>
-                                <v1:customerCode>cust123</v1:customerCode>
-                                <v1:accountCode>acc123</v1:accountCode>
-                                <v1:subscriberCode>sub123</v1:subscriberCode>
-                                <v1:additionalResult>
-                                   <v2:ParameterType>
-                                      <v2:parameterName>param6</v2:parameterName>
-                                      <v2:parameterValue>value6</v2:parameterValue>
-                                   </v2:ParameterType>
-                                </v1:additionalResult>
-                             </v1:responseBody>
-                          </v1:CreateSubscriberResponse>
+                          </v1:CreateSubscriberFault>
                        </soapenv:Body>
                     </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/CreateSubscriber/V1/CreateSubscriberPortType/CreateSubscriberResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetSubscriberInfo" id="403a375b-8e9b-4984-bee4-368f0a335754" interface="GetSubscriberInfoBinding" operation="GetSubscriberInfo"><con:settings/><con:defaultResponse>GetSubscriptionMockResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="GetSubscriptionMockResponse" id="4a48bbd6-9d35-40e5-911b-dacfc42ba989" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script><![CDATA[// Access the raw request content
 def requestContent = mockRequest.requestContent
@@ -1984,4 +1966,19 @@ if (responses.containsKey(subscriberId)) {
                                          </mspf:ManageSubPaymentModeFault>
                                       </soapenv:Body>
                                    </soapenv:Envelope>"""
-}]]></con:script><con:responseContent/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1/ManageSubPaymentModePortType/ManageSubPaymentModeResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}]]></con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mspf="http://xmlns.demo.io/ManageSubPaymentModeFault/V1">
+                       <soapenv:Header/>
+                       <soapenv:Body>
+                          <mspf:ManageSubPaymentModeFault>
+                             <mspf:ResponseHeader>
+                                <mspf:GeneralResponse>
+                                   <mspf:correlationID>corr123</mspf:correlationID>
+                                   <mspf:status>ERROR</mspf:status>
+                                   <mspf:code>400</mspf:code>
+                                   <mspf:codeType>ValidationError</mspf:codeType>
+                                   <mspf:description>Invalid request data</mspf:description>
+                                </mspf:GeneralResponse>
+                             </mspf:ResponseHeader>
+                          </mspf:ManageSubPaymentModeFault>
+                       </soapenv:Body>
+                    </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1/ManageSubPaymentModePortType/ManageSubPaymentModeResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

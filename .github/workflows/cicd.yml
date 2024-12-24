@@ -18,3 +18,14 @@ jobs:
       run: docker build --build-arg CACHEBUST=$(date +"%s") --file Dockerfile --tag itzmedinesh/soapui-mock .
     - name: Push image to docker hub
       run: docker push itzmedinesh/soapui-mock:latest
+
+  deploy:
+    needs: build
+    runs-on: [mock-as-inst]
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull itzmedinesh/soapui-mock:latest
+      - name: Delete container if exists
+        run: docker rm -f soapui-mock-container
+      - name: Run as container
+        run: docker run -d -p 8000:8000 --name soapui-mock-container itzmedinesh/soapui-mock
