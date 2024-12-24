@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y wget unzip && \
 COPY mock-service/ServiceMock.xml $SOAPUI_HOME/
 
 # Expose port for the mock service
-EXPOSE 8080
+EXPOSE 8000
 
 # Run the SoapUI mock service with mockservicerunner.sh
 CMD ["sh", "-c", "${SOAPUI_HOME}/bin/mockservicerunner.sh ${SOAPUI_HOME}/ServiceMock.xml"]
