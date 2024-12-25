@@ -22,10 +22,10 @@ jobs:
     runs-on: [amazon-linux-2023]
     steps:
       - name: Docker Login
-        run: docker login -u ${{secrets.DOCKHUB_UID}} -p ${{secrets.DOCKHUB_PWD}}
+        run: sudo docker login -u ${{secrets.DOCKHUB_UID}} -p ${{secrets.DOCKHUB_PWD}}
       - name: Pull image from docker hub
-        run: docker pull itzmedinesh/soapui-mock:latest
+        run: sudo docker pull itzmedinesh/soapui-mock:latest
       - name: Delete container if exists
-        run: docker rm -f soapui-mock-container
+        run: sudo docker rm -f soapui-mock-container
       - name: Run as container
-        run: docker run -d -p 8000:8000 --name soapui-mock-container itzmedinesh/soapui-mock
+        run: sudo docker run -d -p 8000:8000 --name soapui-mock-container itzmedinesh/soapui-mock
