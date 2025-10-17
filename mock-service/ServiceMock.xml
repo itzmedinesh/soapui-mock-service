@@ -2000,7 +2000,7 @@ if (responses.containsKey(subscriberId)) {
                              </mspf:ResponseHeader>
                           </mspf:ManageSubPaymentModeFault>
                        </soapenv:Body>
-                    </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1/ManageSubPaymentModePortType/ManageSubPaymentModeResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:restMockService id="18835dc4-f029-4da3-97df-1048a2cc4156" port="7000" path="/orders" host="localhost" name="FixedCustomerOrderMock" docroot=""><con:settings/><con:properties/><con:restMockAction name="/ContractRenewalOrders" method="POST" resourcePath="/ContractRenewalOrders" id="d25035ea-cb87-4c3e-9807-15f7112fd66a"><con:settings/><con:defaultResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">ContractOrderRenewalMockResponse</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonBuilder
+                    </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1/ManageSubPaymentModePortType/ManageSubPaymentModeResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:restMockService id="18835dc4-f029-4da3-97df-1048a2cc4156" port="7000" path="/fo" host="localhost" name="FixedCustomerOrderMock" docroot=""><con:settings/><con:properties/><con:restMockAction name="/ContractRenewalOrders" method="POST" resourcePath="/visprenewal/api/v1/ContractRenewalOrders" id="d25035ea-cb87-4c3e-9807-15f7112fd66a"><con:settings/><con:defaultResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">ContractOrderRenewalMockResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonBuilder
 // Script dispatcher is used to select a response based on the incoming request.&#13;
 // Here are few examples showing how to match based on path, query param, header and body&#13;
 &#13;
@@ -2087,34 +2087,4 @@ def response = [
 ]
 
 def json = new JsonBuilder(response).toPrettyString()
-mockResponse.responseContent = json</con:dispatchPath><con:response name="ContractOrderRenewalMockResponse" id="beb63e0a-2cf0-464f-ae1a-d6bc8ec8768d" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[
-    PurchaseOrder: [
-        ShipTo: [
-            [
-                name: "John Doe",
-                street: "123 Main St",
-                city: "Springfield",
-                state: "IL",
-                zip: 62701,
-                country: "US"
-            ],
-            [
-                name: "Jane Smith",
-                street: "456 Oak Ave",
-                city: "Springfield",
-                state: "IL",
-                zip: 62702,
-                country: "US"
-            ]
-        ],
-        BillTo: [
-            name: "Acme Corp",
-            street: "789 Elm St",
-            city: "Springfield",
-            state: "IL",
-            zip: 62703,
-            country: "US"
-        ],
-        OrderDate: "2024-06-10"
-    ]
-]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+mockResponse.responseContent = json</con:dispatchPath><con:response name="ContractOrderRenewalMockResponse" id="beb63e0a-2cf0-464f-ae1a-d6bc8ec8768d" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
