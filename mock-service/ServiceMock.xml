@@ -2139,4 +2139,13 @@ if( requestBody.contains("some data") )&#13;
     return "Response N"&#13;
 }&#13;
 */&#13;
-</con:dispatchPath><con:response name="CancelOrderSuccessResponse" id="95b50451-4ffa-4966-9845-af16f0e7997a" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</con:dispatchPath><con:response name="CancelOrderSuccessResponse" id="95b50451-4ffa-4966-9845-af16f0e7997a" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response><con:response name="CancelOrder400" id="81b64fd8-afc0-42a0-92a5-ecf54ed3abc7" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "error",
+  "message": "Missing required field: externalId"
+}</con:responseContent></con:response><con:response name="CancelOrder404" id="ba5bf297-8ced-46ef-8f99-1f47f4117977" httpResponseStatus="404" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "error",
+  "message": "Order order-123 not found"
+}</con:responseContent></con:response><con:response name="CancelOrder500" id="060c776e-88ff-4c70-9b6f-acb92b323d84" httpResponseStatus="500" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "error",
+  "message": "An unexpected error occurred"
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
