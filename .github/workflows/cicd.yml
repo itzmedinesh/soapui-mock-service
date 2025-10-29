@@ -19,7 +19,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: [amazon-linux-2023]
+    runs-on: [this-amazon-linux-2023]
     steps:
       - name: Docker Login
         run: sudo docker login -u ${{secrets.DOCKHUB_UID}} -p ${{secrets.DOCKHUB_PWD}}
