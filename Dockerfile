@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11-alpine
+FROM openjdk:11-jdk-slim-buster
 
 # Set environment variables
 ENV SOAPUI_VERSION=5.7.2
