@@ -1,4 +1,4 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:11-jdk-alpine
 
 # Set environment variables
 ENV SOAPUI_VERSION=5.7.2
