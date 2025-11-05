@@ -2148,7 +2148,7 @@ if( requestBody.contains("some data") )&#13;
 }</con:responseContent></con:response><con:response name="CancelOrder500" id="060c776e-88ff-4c70-9b6f-acb92b323d84" httpResponseStatus="500" mediaType="application/json"><con:settings/><con:responseContent>{
   "status": "error",
   "message": "An unexpected error occurred"
-}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:restMockService id="44bea3ef-631c-4fdd-9222-3fb1f2c1c6a9" port="7007" path="/api" host="PWNVDIDEV2591" name="FixedCustomerBillCycleUpdate_1" docroot=""><con:settings/><con:properties/><con:restMockAction name="update_1" method="PUT" resourcePath="/first" id="cf24cc94-61e6-435a-92ad-8909757e4a9a"><con:settings/><con:defaultResponse>billcycle200</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:restMockService id="44bea3ef-631c-4fdd-9222-3fb1f2c1c6a9" port="7000" path="/fo" host="PWNVDIDEV2591" name="FixedCustomerBillCycleUpdate_1" docroot=""><con:settings/><con:properties/><con:restMockAction name="update_1" method="PUT" resourcePath="/visprenewal/api/v1/cutomerbillcycleupdate_1" id="cf24cc94-61e6-435a-92ad-8909757e4a9a"><con:settings/><con:defaultResponse>billcycle200</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
 // Script dispatcher is used to select a response based on the incoming request.&#13;
 // Here are few examples showing how to match based on path, query param, header and body&#13;
 &#13;
@@ -2205,7 +2205,7 @@ if( requestBody.contains("some data") )&#13;
     "statusCode": 200
   },
   "asciiContent": "This is a backend stub response"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="update_2" method="PUT" resourcePath="/second" id="b32f0a02-eead-4ef8-b238-8b689b298fcb"><con:settings/><con:defaultResponse>billcycle500</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="update_2" method="PUT" resourcePath="/visprenewal/api/v1/cutomerbillcycleupdate_2" id="b32f0a02-eead-4ef8-b238-8b689b298fcb"><con:settings/><con:defaultResponse>billcycle500</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
 // Script dispatcher is used to select a response based on the incoming request.&#13;
 // Here are few examples showing how to match based on path, query param, header and body&#13;
 &#13;
@@ -2262,7 +2262,7 @@ if( requestBody.contains("some data") )&#13;
     "statusCode": 500
   },
   "asciiContent": "backend internal error"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="update_3" method="PUT" resourcePath="/three" id="7119dd97-4d7e-46e6-b467-adb15802b909"><con:settings/><con:defaultResponse>billcycle400</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="update_3" method="PUT" resourcePath="/visprenewal/api/v1/cutomerbillcycleupdate_3" id="7119dd97-4d7e-46e6-b467-adb15802b909"><con:settings/><con:defaultResponse>billcycle400</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
 // Script dispatcher is used to select a response based on the incoming request.&#13;
 // Here are few examples showing how to match based on path, query param, header and body&#13;
 &#13;
@@ -2319,7 +2319,7 @@ if( requestBody.contains("some data") )&#13;
     "statusCode": 400
   },
   "asciiContent": "Backend validation failed"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="update_4" method="PUT" resourcePath="/four" id="4f9299c6-1560-49bc-8106-6482637aaee6"><con:settings/><con:defaultResponse>billcycle404</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="update_4" method="PUT" resourcePath="/visprenewal/api/v1/cutomerbillcycleupdate_4" id="4f9299c6-1560-49bc-8106-6482637aaee6"><con:settings/><con:defaultResponse>billcycle404</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
 // Script dispatcher is used to select a response based on the incoming request.&#13;
 // Here are few examples showing how to match based on path, query param, header and body&#13;
 &#13;
