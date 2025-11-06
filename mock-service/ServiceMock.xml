@@ -2000,7 +2000,7 @@ if (responses.containsKey(subscriberId)) {
                              </mspf:ResponseHeader>
                           </mspf:ManageSubPaymentModeFault>
                        </soapenv:Body>
-                    </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1/ManageSubPaymentModePortType/ManageSubPaymentModeResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:restMockService id="18835dc4-f029-4da3-97df-1048a2cc4156" port="7000" path="/fo" host="localhost" name="FixedCustomerOrderMock" docroot=""><con:settings/><con:properties/><con:restMockAction name="/ContractRenewalOrders" method="POST" resourcePath="/visprenewal/api/v1/ContractRenewalOrders" id="d25035ea-cb87-4c3e-9807-15f7112fd66a"><con:settings/><con:defaultResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">ContractOrderRenewalMockResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonBuilder
+                    </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1/ManageSubPaymentModePortType/ManageSubPaymentModeResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:restMockService id="18835dc4-f029-4da3-97df-1048a2cc4156" port="7000" path="/fo" host="localhost" name="FixedCustomerOrderMock" docroot=""><con:settings/><con:properties/><con:restMockAction name="/ContractRenewalOrders" method="POST" resourcePath="/visp/v1/renewal" id="d25035ea-cb87-4c3e-9807-15f7112fd66a"><con:settings/><con:defaultResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">ContractOrderRenewalMockResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonBuilder
 // Script dispatcher is used to select a response based on the incoming request.&#13;
 // Here are few examples showing how to match based on path, query param, header and body&#13;
 &#13;
@@ -2087,7 +2087,38 @@ def response = [
 ]
 
 def json = new JsonBuilder(response).toPrettyString()
-mockResponse.responseContent = json</con:dispatchPath><con:response name="ContractOrderRenewalMockResponse" id="beb63e0a-2cf0-464f-ae1a-d6bc8ec8768d" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="ContractCancelOrder" method="POST" resourcePath="/vispcancel/api/v1/order/cancel" id="4087c165-1533-4c7b-bd82-c86e3b2d0195"><con:settings/><con:defaultResponse>CancelOrderSuccessResponse</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonSlurper
+mockResponse.responseContent = json</con:dispatchPath><con:response name="ContractOrderRenewalMockResponse" id="beb63e0a-2cf0-464f-ae1a-d6bc8ec8768d" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response><con:response name="400" id="271cd4cf-e9eb-4dfc-8e01-6dbc57a9404e" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent>{
+  "errors": {
+    "CustomerId": [
+      "No InService Internet Access found for CHS44759",
+      "No InService Internet Access found for CHS44759"
+    ]
+  },
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "traceId": "00-4bf4c2cd0357698fc8e1f0a1cdb8a1e6-14a0f65fa7534090-00"
+}</con:responseContent></con:response><con:response name="404" id="99395c8c-6fda-4845-acd8-04f9a97dd67f" httpResponseStatus="404" mediaType="application/json"><con:settings/><con:responseContent>{
+  "errors": {
+    "CustomerId": [
+      "CHS44759"
+    ]
+  },
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "Resource not found.",
+  "status": 404,
+  "traceId": "00-4bf4c2cd0357698fc8e1f0a1cdb8a1e6-14a0f65fa7534090-00"
+}</con:responseContent></con:response><con:response name="500" id="20ae6be9-4756-4645-a61e-ba249f4c1dd2" httpResponseStatus="500" mediaType="application/json"><con:settings/><con:responseContent>{
+  "errors": {
+    "CustomerId": [
+      "CHS44759"
+    ]
+  },
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "One or more backend service is not available.",
+  "status": 500,
+  "traceId": "00-4bf4c2cd0357698fc8e1f0a1cdb8a1e6-14a0f65fa7534090-00"
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="ContractCancelOrder" method="POST" resourcePath="/vispcancel/api/v1/order/cancel" id="4087c165-1533-4c7b-bd82-c86e3b2d0195"><con:settings/><con:defaultResponse>CancelOrderSuccessResponse</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonSlurper
 
 // --- Log the path and request ---
 def requestPath = mockRequest.getPath()
@@ -2137,6 +2168,89 @@ switch (salesOrderLineId) {
 }</con:responseContent></con:response><con:response name="CancelOrder500" id="060c776e-88ff-4c70-9b6f-acb92b323d84" httpResponseStatus="500" mediaType="application/json"><con:settings/><con:responseContent>{
   "status": "error",
   "message": "An unexpected error occurred"
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="ContractMoveOrder" method="POST" resourcePath="/visp/v1/move" id="ae0e8bcb-3e0d-4b76-95b4-1163f06216f6"><con:settings/><con:defaultResponse>201</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+// Script dispatcher is used to select a response based on the incoming request.&#13;
+// Here are few examples showing how to match based on path, query param, header and body&#13;
+&#13;
+// Match based on path&#13;
+def requestPath = mockRequest.getPath()&#13;
+log.info "Path: "+ requestPath&#13;
+&#13;
+if( requestPath.contains("json") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "JSON Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on query parameter&#13;
+def queryString = mockRequest.getRequest().getQueryString()&#13;
+log.info "QueryString: " + queryString&#13;
+&#13;
+if( queryString.contains("stockholm") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response Stockholm"&#13;
+}&#13;
+else if( queryString.contains("london") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response London"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on header&#13;
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")&#13;
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList&#13;
+&#13;
+if( acceptEncodingHeaderList.contains("gzip,deflate") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "GZiped Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on body&#13;
+def requestBody = mockRequest.getRequestContent()&#13;
+log.info "Request body: " + requestBody&#13;
+&#13;
+if( requestBody.contains("some data") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response N"&#13;
+}&#13;
+*/&#13;
+</con:dispatchPath><con:response name="201" id="b4be3bdb-ebdd-4b35-a86f-9551467e90ac" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response><con:response name="400" id="6663ace8-68bc-4443-b5a6-29e3c2c985c6" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent>{
+  "errors": {
+    "CustomerId": [
+      "No InService Internet Access found for CHS44759",
+      "No InService Internet Access found for CHS44759"
+    ]
+  },
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "traceId": "00-4bf4c2cd0357698fc8e1f0a1cdb8a1e6-14a0f65fa7534090-00"
+}</con:responseContent></con:response><con:response name="404" id="88688705-d936-469b-b5a2-c13a35fb9d82" httpResponseStatus="404" mediaType="application/json"><con:settings/><con:responseContent>{
+  "errors": {
+    "CustomerId": [
+      "CHS44759"
+    ]
+  },
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "Resource not found.",
+  "status": 404,
+  "traceId": "00-4bf4c2cd0357698fc8e1f0a1cdb8a1e6-14a0f65fa7534090-00"
+}</con:responseContent></con:response><con:response name="500" id="763722a1-3d51-4571-abd4-eec2f5e0fa1c" httpResponseStatus="500" mediaType="application/json"><con:settings/><con:responseContent>{
+  "errors": {
+    "CustomerId": [
+      "CHS44759"
+    ]
+  },
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "One or more backend service is not available.",
+  "status": 500,
+  "traceId": "00-4bf4c2cd0357698fc8e1f0a1cdb8a1e6-14a0f65fa7534090-00"
 }</con:responseContent></con:response></con:restMockAction></con:restMockService><con:restMockService id="44bea3ef-631c-4fdd-9222-3fb1f2c1c6a9" port="7000" path="/fo" host="PWNVDIDEV2591" name="FixedCustomerBillCycleUpdate_1" docroot=""><con:settings/><con:properties/><con:restMockAction name="update_1" method="PUT" resourcePath="/visprenewal/api/v1/cutomerbillcycleupdate_1" id="cf24cc94-61e6-435a-92ad-8909757e4a9a"><con:settings/><con:defaultResponse>billcycle200</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
 // Script dispatcher is used to select a response based on the incoming request.&#13;
 // Here are few examples showing how to match based on path, query param, header and body&#13;
