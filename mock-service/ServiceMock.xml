@@ -2106,12 +2106,12 @@ try {
     return "CancelOrder400"
 }
 
-// --- Extract externalId safely ---
-def externalId = json?.externalId ?: ""
-log.info "Extracted externalId: ${externalId}"
+// --- Extract salesOrderLineId safely ---
+def salesOrderLineId = json?.salesOrderLineId ?: ""
+log.info "Extracted salesOrderLineId: ${salesOrderLineId}"
 
-// --- Dispatch based on externalId ---
-switch (externalId) {
+// --- Dispatch based on salesOrderLineId ---
+switch (salesOrderLineId) {
     case "order123":
         log.info "Dispatching CancelOrderSuccessResponse"
         return "CancelOrderSuccessResponse"
@@ -2130,7 +2130,7 @@ switch (externalId) {
 }
 </con:dispatchPath><con:response name="CancelOrderSuccessResponse" id="95b50451-4ffa-4966-9845-af16f0e7997a" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response><con:response name="CancelOrder400" id="81b64fd8-afc0-42a0-92a5-ecf54ed3abc7" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent>{
   "status": "error",
-  "message": "Missing required field: externalId"
+  "message": "Missing required field: salesOrderLineId"
 }</con:responseContent></con:response><con:response name="CancelOrder404" id="ba5bf297-8ced-46ef-8f99-1f47f4117977" httpResponseStatus="404" mediaType="application/json"><con:settings/><con:responseContent>{
   "status": "error",
   "message": "Order order-123 not found"
