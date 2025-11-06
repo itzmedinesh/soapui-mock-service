@@ -2087,58 +2087,47 @@ def response = [
 ]
 
 def json = new JsonBuilder(response).toPrettyString()
-mockResponse.responseContent = json</con:dispatchPath><con:response name="ContractOrderRenewalMockResponse" id="beb63e0a-2cf0-464f-ae1a-d6bc8ec8768d" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="ContractCancelOrder" method="POST" resourcePath="/vispcancel/api/v1/order/cancel" id="4087c165-1533-4c7b-bd82-c86e3b2d0195"><con:settings/><con:defaultResponse>CancelOrderSuccessResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
-// Script dispatcher is used to select a response based on the incoming request.&#13;
-// Here are few examples showing how to match based on path, query param, header and body&#13;
-&#13;
-// Match based on path&#13;
-def requestPath = mockRequest.getPath()&#13;
-log.info "Path: "+ requestPath&#13;
-&#13;
-if( requestPath.contains("json") )&#13;
-{&#13;
-    // return the name of the response you want to dispatch&#13;
-    return "JSON Response"&#13;
-}&#13;
-&#13;
-&#13;
-// Match based on query parameter&#13;
-def queryString = mockRequest.getRequest().getQueryString()&#13;
-log.info "QueryString: " + queryString&#13;
-&#13;
-if( queryString.contains("stockholm") )&#13;
-{&#13;
-    // return the name of the response you want to dispatch&#13;
-    return "Response Stockholm"&#13;
-}&#13;
-else if( queryString.contains("london") )&#13;
-{&#13;
-    // return the name of the response you want to dispatch&#13;
-    return "Response London"&#13;
-}&#13;
-&#13;
-&#13;
-// Match based on header&#13;
-def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")&#13;
-log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList&#13;
-&#13;
-if( acceptEncodingHeaderList.contains("gzip,deflate") )&#13;
-{&#13;
-    // return the name of the response you want to dispatch&#13;
-    return "GZiped Response"&#13;
-}&#13;
-&#13;
-&#13;
-// Match based on body&#13;
-def requestBody = mockRequest.getRequestContent()&#13;
-log.info "Request body: " + requestBody&#13;
-&#13;
-if( requestBody.contains("some data") )&#13;
-{&#13;
-    // return the name of the response you want to dispatch&#13;
-    return "Response N"&#13;
-}&#13;
-*/&#13;
+mockResponse.responseContent = json</con:dispatchPath><con:response name="ContractOrderRenewalMockResponse" id="beb63e0a-2cf0-464f-ae1a-d6bc8ec8768d" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="ContractCancelOrder" method="POST" resourcePath="/vispcancel/api/v1/order/cancel" id="4087c165-1533-4c7b-bd82-c86e3b2d0195"><con:settings/><con:defaultResponse>CancelOrderSuccessResponse</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonSlurper
+
+// --- Log the path and request ---
+def requestPath = mockRequest.getPath()
+log.info "Incoming Path: ${requestPath}"
+
+def requestBody = mockRequest.getRequestContent()
+log.info "Incoming Body: ${requestBody}"
+
+// --- Try to parse the JSON ---
+def json
+try {
+    json = new JsonSlurper().parseText(requestBody)
+} catch (Exception e) {
+    log.error "Invalid JSON: ${e.message}"
+    // malformed JSON → bad request
+    return "CancelOrder400"
+}
+
+// --- Extract externalId safely ---
+def externalId = json?.externalId ?: ""
+log.info "Extracted externalId: ${externalId}"
+
+// --- Dispatch based on externalId ---
+switch (externalId) {
+    case "order123":
+        log.info "Dispatching CancelOrderSuccessResponse"
+        return "CancelOrderSuccessResponse"
+
+    case "Order0":
+        log.info "Dispatching CancelOrder400"
+        return "CancelOrder400"
+
+    case "OrderNA":
+        log.info "Dispatching CancelOrder404"
+        return "CancelOrder404"
+
+    default:
+        log.info "Dispatching CancelOrder500 (default)"
+        return "CancelOrder500"
+}
 </con:dispatchPath><con:response name="CancelOrderSuccessResponse" id="95b50451-4ffa-4966-9845-af16f0e7997a" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response><con:response name="CancelOrder400" id="81b64fd8-afc0-42a0-92a5-ecf54ed3abc7" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent>{
   "status": "error",
   "message": "Missing required field: externalId"
@@ -2376,7 +2365,7 @@ if( requestBody.contains("some data") )&#13;
     "statusCode": 401
   },
   "asciiContent": "Backend validation failed"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="update_5" method="PUT" resourcePath="/five" id="ba90e430-0f3a-4b8e-89fc-bd6b97ace2a3"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="update_5" method="PUT" resourcePath="/five" id="ba90e430-0f3a-4b8e-89fc-bd6b97ace2a3"><con:settings/><con:defaultResponse>billcycle200</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
 // Script dispatcher is used to select a response based on the incoming request.&#13;
 // Here are few examples showing how to match based on path, query param, header and body&#13;
 &#13;
