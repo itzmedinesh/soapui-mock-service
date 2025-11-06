@@ -1697,7 +1697,7 @@
          <msp1:paymentMode>CreditCard</msp1:paymentMode>
       </msp1:ManageSubPaymentModeRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1/ManageSubPaymentModePortType/ManageSubPaymentModeRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="c6561bad-b722-460f-b6eb-9868f85e3b25" port="7001" path="/subscriptions" host="localhost" name="SubscriptionMockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="CreateSubscriber" id="e9a51f6c-7b13-493b-adad-807c215ffc0c" interface="CreateSubscriberBinding" operation="CreateSubscriber"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:response name="CreateSubscriptionMockResponse" id="5e2fc6a2-3442-4976-9675-b8a108446fa0" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script><![CDATA[// Access the raw request content
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1/ManageSubPaymentModePortType/ManageSubPaymentModeRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="c6561bad-b722-460f-b6eb-9868f85e3b25" port="7001" path="/subscriptions" host="localhost" name="SubscriptionMockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="CreateSubscriber" id="e9a51f6c-7b13-493b-adad-807c215ffc0c" interface="CreateSubscriberBinding" operation="CreateSubscriber"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="CreateSubscriptionMockResponse" id="5e2fc6a2-3442-4976-9675-b8a108446fa0" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script><![CDATA[// Access the raw request content
 def requestContent = mockRequest.requestContent
 
 // Parse the request content as XML
@@ -1829,7 +1829,7 @@ if (responses.containsKey(msisdn)) {
                              </v1:responseBody>
                           </v1:CreateSubscriberResponse>
                        </soapenv:Body>
-                    </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/CreateSubscriber/V1/CreateSubscriberPortType/CreateSubscriberResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetSubscriberInfo" id="403a375b-8e9b-4984-bee4-368f0a335754" interface="GetSubscriberInfoBinding" operation="GetSubscriberInfo"><con:settings/><con:defaultResponse>GetSubscriptionMockResponse</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:response name="GetSubscriptionMockResponse" id="4a48bbd6-9d35-40e5-911b-dacfc42ba989" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script><![CDATA[// Access the raw request content
+                    </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/CreateSubscriber/V1/CreateSubscriberPortType/CreateSubscriberResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetSubscriberInfo" id="403a375b-8e9b-4984-bee4-368f0a335754" interface="GetSubscriberInfoBinding" operation="GetSubscriberInfo"><con:settings/><con:defaultResponse>GetSubscriptionMockResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="GetSubscriptionMockResponse" id="4a48bbd6-9d35-40e5-911b-dacfc42ba989" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script><![CDATA[// Access the raw request content
 def requestContent = mockRequest.requestContent
 
 // Parse the request content as XML
@@ -2000,7 +2000,7 @@ if (responses.containsKey(subscriberId)) {
                              </mspf:ResponseHeader>
                           </mspf:ManageSubPaymentModeFault>
                        </soapenv:Body>
-                    </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1/ManageSubPaymentModePortType/ManageSubPaymentModeResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:restMockService id="18835dc4-f029-4da3-97df-1048a2cc4156" port="7000" path="/fo" host="localhost" name="FixedCustomerOrderMock" docroot=""><con:settings/><con:properties/><con:restMockAction name="/ContractRenewalOrders" method="POST" resourcePath="/visprenewal/api/v1/ContractRenewalOrders" id="d25035ea-cb87-4c3e-9807-15f7112fd66a"><con:settings/><con:defaultResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">ContractOrderRenewalMockResponse</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonBuilder
+                    </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.demo.io/Service/ManageSubPaymentMode/V1/ManageSubPaymentModePortType/ManageSubPaymentModeResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:restMockService id="18835dc4-f029-4da3-97df-1048a2cc4156" port="7000" path="/fo" host="localhost" name="FixedCustomerOrderMock" docroot=""><con:settings/><con:properties/><con:restMockAction name="/ContractRenewalOrders" method="POST" resourcePath="/visprenewal/api/v1/ContractRenewalOrders" id="d25035ea-cb87-4c3e-9807-15f7112fd66a"><con:settings/><con:defaultResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">ContractOrderRenewalMockResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonBuilder
 // Script dispatcher is used to select a response based on the incoming request.&#13;
 // Here are few examples showing how to match based on path, query param, header and body&#13;
 &#13;
@@ -2087,112 +2087,65 @@ def response = [
 ]
 
 def json = new JsonBuilder(response).toPrettyString()
-mockResponse.responseContent = json</con:dispatchPath><con:response name="ContractOrderRenewalMockResponse" id="beb63e0a-2cf0-464f-ae1a-d6bc8ec8768d" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="ContractCancelOrder" method="POST" resourcePath="/vispcancel/api/v1/order/cancel" id="4087c165-1533-4c7b-bd82-c86e3b2d0195"><con:settings/><con:defaultResponse>CancelOrderSuccessResponse</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonBuilder
-
-// --- Safety check ---
-if (!binding.variables.containsKey('mockRequest') || mockRequest == null) {
-    log.error "mockRequest is null — make sure this script is in the MockService Script Dispatcher."
-    return '{"error":"mockRequest is null"}'
-}
-
-def requestPath  = mockRequest.getPath() ?: ""
-def requestBody  = mockRequest.getRequestContent() ?: ""
-
-log.info "Incoming Path: ${requestPath}"
-log.info "Request Body: ${requestBody}"
-
-// --- Initialize response ---
-def responseMap = [:]
-def statusCode  = 500
-
-if (requestBody.contains("order123")) {
-    statusCode = 200
-    responseMap = [
-        status : "SUCCESS",
-        message: "Order processed successfully",
-        orderId: "order123"
-    ]
-}
-else if (requestBody.contains("Order0")) {
-    statusCode = 400
-    responseMap = [
-        status : "BAD_REQUEST",
-        message: "Invalid order request",
-        errorCode: "ERR400"
-    ]
-}
-else if (requestBody.contains("OrderNA")) {
-    statusCode = 404
-    responseMap = [
-        status : "NOT_FOUND",
-        message: "Order not found",
-        errorCode: "ERR404"
-    ]
-}
-else {
-    statusCode = 500
-    responseMap = [
-        status : "ERROR",
-        message: "Internal service error",
-        errorCode: "ERR500"
-    ]
-}
-
-// --- Build and assign JSON response ---
-def jsonResponse = new JsonBuilder(responseMap).toPrettyString()
-mockResponse.responseHttpStatus = statusCode
-mockResponse.responseContent    = jsonResponse
-
-log.info "Responding with HTTP ${statusCode}"
-return jsonResponse
-</con:dispatchPath><con:response name="CancelOrderSuccessResponse" id="95b50451-4ffa-4966-9845-af16f0e7997a" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:script>def requestBody = mockRequest.requestContent()
-
-log.info "Request body: " + requestBody
- 
-if( requestBody.contains("order123") )
-
-{
-
-    mockResponse.responseHttpStatus = 200
-
-    return "SuccessResponse"
-
-}
-
-else if( requestBody.contains("Order0") )
-
-{
-
-    mockResponse.responseHttpStatus = 400
-
-    return "BAD request"
-
-}
-
-else if( requestBody.contains("OrderNA") )
-
-{
-
-    mockResponse.responseHttpStatus = 404
-
-    return "Not Found"
-
-}
-
-else{
-
-mockResponse.responseHttpStatus = 500
-
-    return "Internal service error"
-
-}
- </con:script><con:responseContent>{}</con:responseContent></con:response><con:response name="CancelOrder400" id="81b64fd8-afc0-42a0-92a5-ecf54ed3abc7" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:script/><con:responseContent>{
+mockResponse.responseContent = json</con:dispatchPath><con:response name="ContractOrderRenewalMockResponse" id="beb63e0a-2cf0-464f-ae1a-d6bc8ec8768d" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="ContractCancelOrder" method="POST" resourcePath="/vispcancel/api/v1/order/cancel" id="4087c165-1533-4c7b-bd82-c86e3b2d0195"><con:settings/><con:defaultResponse>CancelOrderSuccessResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+// Script dispatcher is used to select a response based on the incoming request.&#13;
+// Here are few examples showing how to match based on path, query param, header and body&#13;
+&#13;
+// Match based on path&#13;
+def requestPath = mockRequest.getPath()&#13;
+log.info "Path: "+ requestPath&#13;
+&#13;
+if( requestPath.contains("json") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "JSON Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on query parameter&#13;
+def queryString = mockRequest.getRequest().getQueryString()&#13;
+log.info "QueryString: " + queryString&#13;
+&#13;
+if( queryString.contains("stockholm") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response Stockholm"&#13;
+}&#13;
+else if( queryString.contains("london") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response London"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on header&#13;
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")&#13;
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList&#13;
+&#13;
+if( acceptEncodingHeaderList.contains("gzip,deflate") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "GZiped Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on body&#13;
+def requestBody = mockRequest.getRequestContent()&#13;
+log.info "Request body: " + requestBody&#13;
+&#13;
+if( requestBody.contains("some data") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response N"&#13;
+}&#13;
+*/&#13;
+</con:dispatchPath><con:response name="CancelOrderSuccessResponse" id="95b50451-4ffa-4966-9845-af16f0e7997a" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response><con:response name="CancelOrder400" id="81b64fd8-afc0-42a0-92a5-ecf54ed3abc7" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent>{
   "status": "error",
   "message": "Missing required field: externalId"
 }</con:responseContent></con:response><con:response name="CancelOrder404" id="ba5bf297-8ced-46ef-8f99-1f47f4117977" httpResponseStatus="404" mediaType="application/json"><con:settings/><con:responseContent>{
   "status": "error",
   "message": "Order order-123 not found"
-}</con:responseContent></con:response><con:response name="CancelOrder500" id="060c776e-88ff-4c70-9b6f-acb92b323d84" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{
+}</con:responseContent></con:response><con:response name="CancelOrder500" id="060c776e-88ff-4c70-9b6f-acb92b323d84" httpResponseStatus="500" mediaType="application/json"><con:settings/><con:responseContent>{
   "status": "error",
   "message": "An unexpected error occurred"
 }</con:responseContent></con:response></con:restMockAction></con:restMockService><con:restMockService id="44bea3ef-631c-4fdd-9222-3fb1f2c1c6a9" port="7000" path="/fo" host="PWNVDIDEV2591" name="FixedCustomerBillCycleUpdate_1" docroot=""><con:settings/><con:properties/><con:restMockAction name="update_1" method="PUT" resourcePath="/visprenewal/api/v1/cutomerbillcycleupdate_1" id="cf24cc94-61e6-435a-92ad-8909757e4a9a"><con:settings/><con:defaultResponse>billcycle200</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
@@ -2423,7 +2376,7 @@ if( requestBody.contains("some data") )&#13;
     "statusCode": 401
   },
   "asciiContent": "Backend validation failed"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="update_5" method="PUT" resourcePath="/five" id="ba90e430-0f3a-4b8e-89fc-bd6b97ace2a3"><con:settings/><con:defaultResponse>billcycle200</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="update_5" method="PUT" resourcePath="/five" id="ba90e430-0f3a-4b8e-89fc-bd6b97ace2a3"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
 // Script dispatcher is used to select a response based on the incoming request.&#13;
 // Here are few examples showing how to match based on path, query param, header and body&#13;
 &#13;
