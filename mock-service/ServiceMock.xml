@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="531ef9b5-26a0-4e56-9194-fd9bf1424a18" activeEnvironment="Default" name="ServiceMock" resourceRoot="" soapui-version="5.9.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="531ef9b5-26a0-4e56-9194-fd9bf1424a18" activeEnvironment="Default" name="ServiceMock" resourceRoot="" soapui-version="5.9.1" abortOnError="false" runType="SEQUENTIAL" defaultScriptLanguage="Groovy" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
   <con:entry key="Report Format(s)" value=""/>
   <con:entry key="Host:Port" value=""/>
   <con:entry key="Export JUnit Results" value="false"/>
@@ -2087,106 +2087,48 @@ def response = [
 ]
 
 def json = new JsonBuilder(response).toPrettyString()
-mockResponse.responseContent = json</con:dispatchPath><con:response name="ContractOrderRenewalMockResponse" id="beb63e0a-2cf0-464f-ae1a-d6bc8ec8768d" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="ContractCancelOrder" method="POST" resourcePath="/vispcancel/api/v1/order/cancel" id="4087c165-1533-4c7b-bd82-c86e3b2d0195"><con:settings/><con:defaultResponse>CancelOrderSuccessResponse</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonBuilder
+mockResponse.responseContent = json</con:dispatchPath><con:response name="ContractOrderRenewalMockResponse" id="beb63e0a-2cf0-464f-ae1a-d6bc8ec8768d" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:responseContent>{}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="ContractCancelOrder" method="POST" resourcePath="/vispcancel/api/v1/order/cancel" id="4087c165-1533-4c7b-bd82-c86e3b2d0195"><con:settings/><con:defaultResponse>CancelOrderSuccessResponse</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonSlurper
 
-// --- Safety check ---
-if (!binding.variables.containsKey('mockRequest') || mockRequest == null) {
-    log.error "mockRequest is null — make sure this script is in the MockService Script Dispatcher."
-    return '{"error":"mockRequest is null"}'
-}
-
-def requestPath  = mockRequest.getPath() ?: ""
-def requestBody  = mockRequest.getRequestContent() ?: ""
-
+// --- Log the path and request ---
+def requestPath = mockRequest.getPath()
 log.info "Incoming Path: ${requestPath}"
-log.info "Request Body: ${requestBody}"
 
-// --- Initialize response ---
-def responseMap = [:]
-def statusCode  = 500
+def requestBody = mockRequest.getRequestContent()
+log.info "Incoming Body: ${requestBody}"
 
-if (requestBody.contains("order123")) {
-    statusCode = 200
-    responseMap = [
-        status : "SUCCESS",
-        message: "Order processed successfully",
-        orderId: "order123"
-    ]
-}
-else if (requestBody.contains("Order0")) {
-    statusCode = 400
-    responseMap = [
-        status : "BAD_REQUEST",
-        message: "Invalid order request",
-        errorCode: "ERR400"
-    ]
-}
-else if (requestBody.contains("OrderNA")) {
-    statusCode = 404
-    responseMap = [
-        status : "NOT_FOUND",
-        message: "Order not found",
-        errorCode: "ERR404"
-    ]
-}
-else {
-    statusCode = 500
-    responseMap = [
-        status : "ERROR",
-        message: "Internal service error",
-        errorCode: "ERR500"
-    ]
+// --- Try to parse the JSON ---
+def json
+try {
+    json = new JsonSlurper().parseText(requestBody)
+} catch (Exception e) {
+    log.error "Invalid JSON: ${e.message}"
+    // malformed JSON → bad request
+    return "CancelOrder400"
 }
 
-// --- Build and assign JSON response ---
-def jsonResponse = new JsonBuilder(responseMap).toPrettyString()
-mockResponse.responseHttpStatus = statusCode
-mockResponse.responseContent    = jsonResponse
+// --- Extract externalId safely ---
+def externalId = json?.externalId ?: ""
+log.info "Extracted externalId: ${externalId}"
 
-log.info "Responding with HTTP ${statusCode}"
-return jsonResponse
-</con:dispatchPath><con:response name="CancelOrderSuccessResponse" id="95b50451-4ffa-4966-9845-af16f0e7997a" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:script>def requestBody = mockRequest.requestContent()
+// --- Dispatch based on externalId ---
+switch (externalId) {
+    case "order123":
+        log.info "Dispatching CancelOrderSuccessResponse"
+        return "CancelOrderSuccessResponse"
 
-log.info "Request body: " + requestBody
- 
-if( requestBody.contains("order123") )
+    case "Order0":
+        log.info "Dispatching CancelOrder400"
+        return "CancelOrder400"
 
-{
+    case "OrderNA":
+        log.info "Dispatching CancelOrder404"
+        return "CancelOrder404"
 
-    mockResponse.responseHttpStatus = 200
-
-    return "SuccessResponse"
-
+    default:
+        log.info "Dispatching CancelOrder500 (default)"
+        return "CancelOrder500"
 }
-
-else if( requestBody.contains("Order0") )
-
-{
-
-    mockResponse.responseHttpStatus = 400
-
-    return "BAD request"
-
-}
-
-else if( requestBody.contains("OrderNA") )
-
-{
-
-    mockResponse.responseHttpStatus = 404
-
-    return "Not Found"
-
-}
-
-else{
-
-mockResponse.responseHttpStatus = 500
-
-    return "Internal service error"
-
-}
- </con:script><con:responseContent>{}</con:responseContent></con:response><con:response name="CancelOrder400" id="81b64fd8-afc0-42a0-92a5-ecf54ed3abc7" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:script/><con:responseContent>{
+</con:dispatchPath><con:response name="CancelOrderSuccessResponse" id="95b50451-4ffa-4966-9845-af16f0e7997a" httpResponseStatus="201" mediaType="application/json"><con:settings/><con:script/><con:responseContent>{}</con:responseContent></con:response><con:response name="CancelOrder400" id="81b64fd8-afc0-42a0-92a5-ecf54ed3abc7" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:script/><con:responseContent>{
   "status": "error",
   "message": "Missing required field: externalId"
 }</con:responseContent></con:response><con:response name="CancelOrder404" id="ba5bf297-8ced-46ef-8f99-1f47f4117977" httpResponseStatus="404" mediaType="application/json"><con:settings/><con:responseContent>{
