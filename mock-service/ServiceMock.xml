@@ -2200,58 +2200,43 @@ switch (requestID) {
   "title": "One or more backend service is not available.",
   "status": 500,
   "traceId": "00-4bf4c2cd0357698fc8e1f0a1cdb8a1e6-14a0f65fa7534090-00"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="BillCycleUpdate" method="PUT" resourcePath="/Update" id="a23bd4b5-0c5e-4c44-9a36-087667e1c07b"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
-// Script dispatcher is used to select a response based on the incoming request.&#13;
-// Here are few examples showing how to match based on path, query param, header and body&#13;
-&#13;
-// Match based on path&#13;
-def requestPath = mockRequest.getPath()&#13;
-log.info "Path: "+ requestPath&#13;
-&#13;
-if( requestPath.contains("json") )&#13;
-{&#13;
-    // return the name of the response you want to dispatch&#13;
-    return "JSON Response"&#13;
-}&#13;
-&#13;
-&#13;
-// Match based on query parameter&#13;
-def queryString = mockRequest.getRequest().getQueryString()&#13;
-log.info "QueryString: " + queryString&#13;
-&#13;
-if( queryString.contains("stockholm") )&#13;
-{&#13;
-    // return the name of the response you want to dispatch&#13;
-    return "Response Stockholm"&#13;
-}&#13;
-else if( queryString.contains("london") )&#13;
-{&#13;
-    // return the name of the response you want to dispatch&#13;
-    return "Response London"&#13;
-}&#13;
-&#13;
-&#13;
-// Match based on header&#13;
-def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")&#13;
-log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList&#13;
-&#13;
-if( acceptEncodingHeaderList.contains("gzip,deflate") )&#13;
-{&#13;
-    // return the name of the response you want to dispatch&#13;
-    return "GZiped Response"&#13;
-}&#13;
-&#13;
-&#13;
-// Match based on body&#13;
-def requestBody = mockRequest.getRequestContent()&#13;
-log.info "Request body: " + requestBody&#13;
-&#13;
-if( requestBody.contains("some data") )&#13;
-{&#13;
-    // return the name of the response you want to dispatch&#13;
-    return "Response N"&#13;
-}&#13;
-*/&#13;
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="BillCycleUpdate" method="PUT" resourcePath="/Update" id="a23bd4b5-0c5e-4c44-9a36-087667e1c07b"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>// --- Log the incoming request path ---
+def requestPath = mockRequest.getPath()
+log.info "Incoming Path: ${requestPath}"
+
+// --- Get request headers ---
+def headers = mockRequest.getRequestHeaders()
+if (!headers) {
+    log.error "No headers found in request"
+    return "200Sucess"  // fallback stub
+}
+
+// --- Extract xAPI-requestID header ---
+def requestID = headers["xAPI-requestID"]?.getAt(0)
+log.info "xAPI-requestID: ${requestID}"
+
+// --- Dispatch based on xAPI-requestID ---
+switch (requestID) {
+    case "REQ-200":
+        log.info "Dispatching stub: 200 (Success)"
+        return "200Sucess"
+
+    case "REQ-400":
+        log.info "Dispatching stub: 400 (Bad Request)"
+        return "400BadRequest"
+
+    case "REQ-404":
+        log.info "Dispatching stub: 404 (Not Found)"
+        return "404urlnotfound"
+
+    case "REQ-500":
+        log.info "Dispatching stub: 500 (Server Error)"
+        return "500Internal"
+
+    default:
+        log.info "Unknown or missing xAPI-requestID. Returning default: 200"
+        return "200Sucess"
+}
 </con:dispatchPath><con:response name="200Sucess" id="8b2827fa-ea10-45b5-b3bc-633655763230" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
 	"message":"Sucess"
 }
