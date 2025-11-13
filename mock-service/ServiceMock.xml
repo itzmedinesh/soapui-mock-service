@@ -2249,4 +2249,82 @@ switch (requestID) {
 </con:responseContent></con:response><con:response name="404urlnotfound" id="f3dbb8f1-4bf9-4cd5-904c-7d8056fe70d1" httpResponseStatus="404" mediaType="application/json"><con:settings/><con:responseContent>{
 	"message":"url not found"
 }
-</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</con:responseContent></con:response></con:restMockAction><con:restMockAction name="HouseholdBenefitsQuery" method="GET" resourcePath="/Benefits/ABC12345" id="bdd46cdf-9aa7-4342-a56d-e1a88856c97c"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>// --- Log the incoming request path ---
+def requestPath = mockRequest.getPath()
+log.info "Incoming Path: ${requestPath}"
+
+// --- Get request headers ---
+def headers = mockRequest.getRequestHeaders()
+if (!headers) {
+    log.error "No headers found in request"
+    return "200Sucess"  // fallback stub
+}
+
+// --- Extract xAPI-requestID header ---
+def requestID = headers["xAPI-requestID"]?.getAt(0)
+log.info "xAPI-requestID: ${requestID}"
+
+// --- Dispatch based on xAPI-requestID ---
+switch (requestID) {
+    case "REQ-200":
+        log.info "Dispatching stub: 200 (Success)"
+        return "200Sucess"
+
+    case "REQ-400":
+        log.info "Dispatching stub: 400 (Bad Request)"
+        return "400BadRequest"
+
+    case "REQ-500":
+        log.info "Dispatching stub: 500 (Server Error)"
+        return "500Internal"
+
+    default:
+        log.info "Unknown or missing xAPI-requestID. Returning default: 200"
+        return "200Sucess"
+}</con:dispatchPath><con:response name="200Sucess" id="913be214-8e47-4857-8629-36f50eeebbb8" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "fixedCustomer": {
+    "fixedCustomerCode": "ABC12345",
+    "klantvoordeel": {
+      "version": "V1",
+      "startDate": "2020-01-01"
+    },
+    "name": {
+      "lastName": "Smith",
+      "prefix": "van",
+      "initials": "J.D."
+    },
+    "products": {
+      "product": [
+        {
+          "code": "PROD001",
+          "description": "Basic Internet Package",
+          "commercialName": "InternetPremium",
+          "sortOrder": "1"
+        },
+        {
+          "code": "PROD002",
+          "sortOrder": "2"
+        }
+      ]
+    },
+    "benefits": {
+      "benefit": [
+        {
+          "code": "BEN001",
+          "description": "Discount on monthly bill",
+          "type": "discount",
+          "sortOrder": "1"
+        },
+        {
+          "code": "BEN002",
+          "type": "voucher",
+          "sortOrder": "2"
+        }
+      ]
+    }
+  }
+}</con:responseContent></con:response><con:response name="400BadRequest" id="c3c0b31b-5c25-4d96-95d0-cd03770ab215" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent>{
+	"message":"badReqeust"
+}</con:responseContent></con:response><con:response name="500Internal" id="2d0ae9a3-7042-4aad-8c79-82bde9135c2c" httpResponseStatus="500" mediaType="application/json"><con:settings/><con:responseContent>{
+	"message":"internal error"
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
