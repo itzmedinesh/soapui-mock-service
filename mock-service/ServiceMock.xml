@@ -2270,9 +2270,9 @@ switch (requestID) {
         log.info "Dispatching stub: 200 (Success)"
         return "200Sucess"
 
-    case "REQ-400":
-        log.info "Dispatching stub: 400 (Bad Request)"
-        return "400BadRequest"
+    case "REQ-404":
+        log.info "Dispatching stub: 404 (urlnotfound)"
+        return "404urlnotfound"
 
     case "REQ-500":
         log.info "Dispatching stub: 500 (Server Error)"
@@ -2323,8 +2323,9 @@ switch (requestID) {
       ]
     }
   }
-}</con:responseContent></con:response><con:response name="400BadRequest" id="c3c0b31b-5c25-4d96-95d0-cd03770ab215" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent>{
-	"message":"badReqeust"
 }</con:responseContent></con:response><con:response name="500Internal" id="2d0ae9a3-7042-4aad-8c79-82bde9135c2c" httpResponseStatus="500" mediaType="application/json"><con:settings/><con:responseContent>{
 	"message":"internal error"
-}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}</con:responseContent></con:response><con:response name="404urlnotfound" id="04f85353-c17f-4ce4-9ed2-3ea5d10ccfda" httpResponseStatus="404" mediaType="application/json"><con:settings/><con:responseContent>{
+	"mesage":"urlnotfound"
+}
+</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
