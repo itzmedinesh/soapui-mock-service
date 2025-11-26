@@ -2383,7 +2383,7 @@ if( requestBody.contains("some data") )&#13;
   "CustomerId": "ODF47900",
   "CycleId": 2,
   "CycleIdRequested": 0
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/selola/v1/eligibilityCheck" method="GET" resourcePath="/selola/v1/eligibilityCheck" id="0251d652-ded5-4fb3-ae3d-1a66055c06b1"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="CustomerOfferEligibilityCheck" method="GET" resourcePath="/selola/v1/eligibilityCheck" id="0251d652-ded5-4fb3-ae3d-1a66055c06b1"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>
 
 // Read the full request URL
 def url = mockRequest.getHttpRequest().getRequestURL().toString()
@@ -2481,4 +2481,66 @@ switch (msisdn) {
     <errorCode>10</errorCode>
     <description>Error fethching the offers</description>
 </error>
-]]></con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="CustomerCombiCheck" method="GET" resourcePath="/Combi/ABC12345" id="17770662-d159-469a-bb4f-811e633449da"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>// --- Log the incoming request path ---
+def requestPath = mockRequest.getPath()
+log.info "Incoming Path: ${requestPath}"
+
+// --- Get request headers ---
+def headers = mockRequest.getRequestHeaders()
+if (!headers) {
+    log.error "No headers found in request"
+    return "200Sucess"  // fallback stub
+}
+
+// --- Extract xAPI-requestID header ---
+def requestID = headers["xAPI-requestID"]?.getAt(0)
+log.info "xAPI-requestID: ${requestID}"
+
+// --- Dispatch based on xAPI-requestID ---
+switch (requestID) {
+    case "REQ-200":
+        log.info "Dispatching stub: 200 (Success)"
+        return "200Sucess"
+
+    case "REQ-404":
+        log.info "Dispatching stub: 404 (urlnotfound)"
+        return "404urlnotfound"
+
+    case "REQ-500":
+        log.info "Dispatching stub: 500 (Server Error)"
+        return "500Internal"
+		
+	case "REQ-400":
+        log.info "Dispatching stub: 400 (Bad Request)"
+        return "400BadRequest"
+
+    default:
+        log.info "Unknown or missing xAPI-requestID. Returning default: 200"
+        return "200Sucess"
+}</con:dispatchPath><con:response name="200Sucess" id="ff501e64-e08a-4ac4-afe1-cb8bd730e9ef" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "CombiCheck": {
+    "CustomerCode": "ABC12345",
+    "DocumentType": "Passport",
+    "DocumentNumber": "P12345678",
+    "DealerId": "Dealer001",
+    "CombiCheckDecisions": [
+      {
+        "Key": "Decision1",
+        "Value": "Approved"
+      },
+      {
+        "Key": "Decision2",
+        "Value": "ManualReview"
+      }
+    ]
+  }
+}</con:responseContent></con:response><con:response name="400BadRequest" id="bf9b8055-8380-4b55-b63d-502875f6b380" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent>{
+	"message":"Bad Request from the backend"
+}
+</con:responseContent></con:response><con:response name="500Internal" id="651ca5c2-24af-4466-bc03-b1011f0ebf27" httpResponseStatus="500" mediaType="application/json"><con:settings/><con:responseContent>{
+	"message":"Internal error from the backend"
+}
+</con:responseContent></con:response><con:response name="404urlnotfound" id="9930bc02-6b86-4dd5-b506-28a009745dad" httpResponseStatus="404" mediaType="application/json"><con:settings/><con:responseContent>{
+	"message": "URL not found"
+}
+</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
