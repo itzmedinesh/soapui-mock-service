@@ -2383,4 +2383,100 @@ if( requestBody.contains("some data") )&#13;
   "CustomerId": "ODF47900",
   "CycleId": 2,
   "CycleIdRequested": 0
-}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:restMockService id="68901f9a-50d9-47f6-9ecb-56985253a18f" port="8080" path="/" host="PWNVDIDEV2637" name="CustomerOfferElgibilityCheck"><con:settings/><con:properties/><con:restMockAction name="/selola/v1/eligibilityCheck" method="GET" resourcePath="/selola/v1/eligibilityCheck" id="8c4590e3-00e2-428f-9d2c-692bbda6cdd2"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>// Read the full request URL
+def url = mockRequest.getHttpRequest().getRequestURL().toString()
+def query = mockRequest.getHttpRequest().getQueryString()
+
+log.info "URL: " + url
+log.info "Query: " + query
+
+// Extract msisdn from query string
+def msisdn = null
+if (query != null) {
+    def matcher = query =~ /msisdn=([^&amp;]+)/
+    if (matcher.find()) {
+        msisdn = matcher.group(1)
+        log.info "Extracted MSISDN: ${msisdn}"
+    } else {
+        log.info "MSISDN not found in query string"
+    }
+}
+
+// Return correct mock response
+switch (msisdn) {
+    case "1234567890":
+        log.info "Dispatching Response 1"
+        return "Response 1"
+
+    case "12345450990":
+        log.info "Dispatching Response 2"
+        return "Response 2"
+
+    default:
+        log.info "No match → defaulting to Response 1"
+        return "Response 1"
+}
+</con:dispatchPath><con:response name="Response 1" id="d8ad14d1-15d5-4f7a-8c18-3af76504a25d" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[
+<response>
+    <offer>
+        <offerType>DISCOUNT</offerType>
+        <offerCode>OFF123</offerCode>
+        <startDate>2025-01-01</startDate>
+        <endDate>2025-12-31</endDate>
+        <salesChannels>
+            <salesChannel>online</salesChannel>
+            <salesChannel>store</salesChannel>
+            <salesChannel>app</salesChannel>
+        </salesChannels>
+        <customerCode>CUST123</customerCode>
+        <msisdn>1234567890</msisdn>
+        <type>NEW</type>
+    </offer>
+
+    <offer>
+        <offerType>LOYALTY</offerType>
+        <offerCode>LOY456</offerCode>
+        <startDate>2025-05-01</startDate>
+        <endDate>2025-12-31</endDate>
+        <salesChannels>
+            <salesChannel>online</salesChannel>
+            <salesChannel>partner</salesChannel>
+        </salesChannels>
+        <customerCode>CUST123</customerCode>
+        <msisdn>1234567890</msisdn>
+        <type>EXISTING</type>
+    </offer>
+
+    <!-- Some ineligible offers for testing -->
+
+    <offer>
+        <offerType>BOGO</offerType>
+        <offerCode>BOGO45</offerCode>
+        <startDate>2025-02-15</startDate>
+        <endDate>2025-06-30</endDate>
+        <salesChannels>
+            <salesChannel>app</salesChannel>
+        </salesChannels>
+        <customerCode>CUST999</customerCode>
+        <msisdn>9876543210</msisdn>
+        <type>UPGRADE</type>
+    </offer>
+
+    <offer>
+        <offerType>DISCOUNT</offerType>
+        <offerCode>OFF999</offerCode>
+        <startDate>2025-03-01</startDate>
+        <endDate>2025-03-31</endDate>
+        <salesChannels>
+            <salesChannel>store</salesChannel>
+        </salesChannels>
+        <customerCode>CUST888</customerCode>
+        <msisdn>111222333</msisdn>
+        <type>NEW</type>
+    </offer>
+</response>
+
+]]></con:responseContent></con:response><con:response name="Response 2" id="e14ff2ac-f928-4266-b9ba-1f4d459ea4fe" httpResponseStatus="500"><con:settings/><con:responseContent><![CDATA[<error>
+    <errorCode>10</errorCode>
+    <description>Error fethching the offers</description>
+</error>]]></con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
